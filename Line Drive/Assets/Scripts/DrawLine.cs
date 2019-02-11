@@ -5,6 +5,8 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour {
     public GameObject linePre;
     public GameObject ball;
+    public bool lineHasPhysics;
+    public float minDrawDistance;
     
     bool drawing = false;
     bool wasDrawing = false;
@@ -35,7 +37,7 @@ public class DrawLine : MonoBehaviour {
                 return;
             }
 
-            if ((lastPoint - mousPos).magnitude < 0.1) return;
+            if ((lastPoint - mousPos).magnitude < minDrawDistance) return;
             
             l.positionCount++;
             l.SetPosition(l.positionCount - 1, mousPos);
@@ -54,11 +56,14 @@ public class DrawLine : MonoBehaviour {
                 points[i] = new Vector2(l.GetPosition(i).x, l.GetPosition(i).y);
             }
             e.points = points;
+            if (lineHasPhysics)
+                lineRef.AddComponent<Rigidbody2D>();
         }
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
             ball.AddComponent<Rigidbody2D>();
+            ball.GetComponent<Rigidbody2D>().mass = 0.2f;
         }
 	}
 }
