@@ -19,7 +19,7 @@ public class SpeedBoost : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit");
+        if (collision.gameObject.name != "Ball") return;
         ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.up.x * boostAmt, transform.up.y * boostAmt));
     }
 }
