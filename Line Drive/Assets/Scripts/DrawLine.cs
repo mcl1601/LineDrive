@@ -26,11 +26,11 @@ public class DrawLine : MonoBehaviour {
         if (lineRef != null)
             l = lineRef.GetComponent<LineRenderer>();
 
+        Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
         // while holding down the mouse or finger
         if (Input.GetMouseButton(0))
         {
             // get the point
-            Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
 
             // if this is the first frame of drawing
             if(!drawing)
@@ -46,6 +46,8 @@ public class DrawLine : MonoBehaviour {
                 return;
             }
 
+            wasDrawing = true;
+
             // not first frame of drawing
             // have we moved enough to add another segment?
             if ((lastPoint - mousPos).magnitude < minDrawDistance) return;
@@ -55,13 +57,17 @@ public class DrawLine : MonoBehaviour {
             l.SetPosition(l.positionCount - 1, mousPos);
             lastPoint = mousPos;
 
-            wasDrawing = true;
         }
         // first frame after not drawing anymore
         else if(wasDrawing)
         {
             drawing = false;
             wasDrawing = false;
+            if(l.positionCount == 1)
+            {
+                l.positionCount++;
+                l.SetPosition(1, mousPos + new Vector3(0.1f, 0f, 0f));
+            }
             // set up the edge collider using the line points
             EdgeCollider2D e = lineRef.GetComponent<EdgeCollider2D>();
             Vector2[] points = new Vector2[l.positionCount];
