@@ -5,17 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
-    public GameObject mainMenu, lvlSelect, lvlGroup;
+    public GameObject mainMenu, lvlSelect, loadingScreen, lvlGroup;
+    public Image loadingBar;
 
-    //delegate void LoadLvl(int lvl);
-    //LoadLvl myLoadLvl;
 	// Use this for initialization
 	void Start () {
 		for(int i = 0; i < lvlGroup.transform.childCount; i++)
         {
             GameObject btn = lvlGroup.transform.GetChild(i).gameObject;
-            //myLoadLvl = LoadLevel;
-            //btn.GetComponent<Button>().onClick.AddListener(myLoadLvl(i+1));
+            int l = i;
+            btn.GetComponent<Button>().onClick.AddListener(() => { LoadLevel(l + 1); });
         }
 	}
 	
@@ -35,9 +34,10 @@ public class MainMenuController : MonoBehaviour {
 
     public void LoadLevel(int level)
     {
-        Debug.Log(level);
         IEnumerator co = LoadScene(level);
         StartCoroutine(co);
+        lvlSelect.SetActive(false);
+        loadingScreen.SetActive(true);
     }
 
     IEnumerator LoadScene(int level)
@@ -48,9 +48,8 @@ public class MainMenuController : MonoBehaviour {
 
         while(!asyncLoad.isDone)
         {
+            loadingBar.fillAmount = asyncLoad.progress;
             yield return null;
         }
-
-        Debug.Log("Done Loading");
     }
 }
