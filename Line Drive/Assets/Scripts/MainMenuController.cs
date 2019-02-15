@@ -8,17 +8,42 @@ public class MainMenuController : MonoBehaviour {
     public GameObject mainMenu, lvlSelect, loadingScreen, lvlGroup;
     public Image loadingBar;
 
+    private int maxLevelUnlocked;
+
 	// Use this for initialization
 	void Start () {
+        CheckForData();
+
 		for(int i = 0; i < lvlGroup.transform.childCount; i++)
         {
             GameObject btn = lvlGroup.transform.GetChild(i).gameObject;
             int l = i;
-            btn.GetComponent<Button>().onClick.AddListener(() => { LoadLevel(l + 1); });
+            Button b = btn.GetComponent<Button>();
+            if (i < maxLevelUnlocked)
+                b.interactable = true;
+            else
+                b.interactable = false;
+            b.onClick.AddListener(() => { LoadLevel(l + 1); });
         }
 	}
 	
-	
+	private void CheckForData()
+    {
+        if(!PlayerPrefs.HasKey("maxLevel"))
+        {
+            PlayerPrefs.SetInt("maxLevel", 1);
+            maxLevelUnlocked = 1;
+        }
+        else
+        {
+            maxLevelUnlocked = PlayerPrefs.GetInt("maxLevel");
+
+            if(maxLevelUnlocked > 1)
+            {
+                GameObject.Find("Continue").GetComponent<Button>().interactable = true;
+            }
+        }
+    }
 
     public void SwitchToLevelSelect()
     {
@@ -30,6 +55,18 @@ public class MainMenuController : MonoBehaviour {
     {
         mainMenu.SetActive(true);
         lvlSelect.SetActive(false);
+    }
+
+    public void NewGame()
+    {
+        PlayerPrefs.SetInt("maxLevel", 1);
+        maxLevelUnlocked = 1;
+        LoadLevel(1);
+    }
+
+    public void ContinueGame()
+    {
+        LoadLevel(PlayerPrefs.GetInt("maxLevel"));
     }
 
     public void LoadLevel(int level)
