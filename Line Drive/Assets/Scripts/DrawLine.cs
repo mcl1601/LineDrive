@@ -7,7 +7,7 @@ public class DrawLine : MonoBehaviour {
     public GameObject ball;
     public bool lineHasPhysics;
     public float minDrawDistance;
-    public GameObject powerLine;
+    public GameObject powerLinePref;
 
 
     bool drawing = false;
@@ -22,6 +22,7 @@ public class DrawLine : MonoBehaviour {
     Vector3 mDown;
     Vector3 mCurrent;
     Vector3 mUp;
+    GameObject powerLine;
     float dragForce = 5;
     // Use this for initialization
     void Start () {
@@ -112,13 +113,17 @@ public class DrawLine : MonoBehaviour {
             if (Input.GetMouseButtonDown(1))
             {
                 mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+                powerLine = GameObject.Instantiate(powerLinePref, ball.transform.position, Quaternion.identity);
             }
             if (Input.GetMouseButton(1))
             {
                 mCurrent = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+                powerLine.transform.localScale = new Vector3((mDown.x - mCurrent.x)/2, .25f, 0);
+
             }
             if (Input.GetMouseButtonUp(1))
             {
+                Destroy(powerLine);
                 mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;

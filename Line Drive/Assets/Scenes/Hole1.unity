@@ -501,7 +501,8 @@ MonoBehaviour:
   ball: {fileID: 1174633320}
   lineHasPhysics: 0
   minDrawDistance: 0.15
-  powerLine: {fileID: 1716959252535948, guid: acb1cbcf97ecf154fbb9342725d13f77, type: 2}
+  powerLinePref: {fileID: 1871963064687940, guid: c04826398bc34a742b1dd18886085b95,
+    type: 2}
 --- !u!1001 &1174633319
 Prefab:
   m_ObjectHideFlags: 0
