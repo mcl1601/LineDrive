@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ToolToggle : MonoBehaviour {
 
@@ -12,9 +13,25 @@ public class ToolToggle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.L)) toggle = "Line";
-        if (Input.GetKeyDown(KeyCode.B)) toggle = "Boost";
-        if (Input.GetKeyDown(KeyCode.S)) toggle = "Shoot";
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            toggle = "Line";
+            UpdateToggle();
+        }
+        if (Input.GetKeyDown(KeyCode.B)) {
+            toggle = "Boost";
+            UpdateToggle();
+        }
+        if (Input.GetKeyDown(KeyCode.S)) {
+            toggle = "Shoot";
+            UpdateToggle();
+        }
 
+
+    }
+
+    void UpdateToggle()
+    {
+        GameObject.FindGameObjectWithTag("Text").GetComponent<TextMeshPro>().text = toggle;
     }
 }

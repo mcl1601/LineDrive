@@ -7,7 +7,9 @@ public class DrawLine : MonoBehaviour {
     public GameObject ball;
     public bool lineHasPhysics;
     public float minDrawDistance;
-    
+    public GameObject powerLine;
+
+
     bool drawing = false;
     bool wasDrawing = false;
     GameObject lineRef = null;
@@ -18,6 +20,7 @@ public class DrawLine : MonoBehaviour {
     List<GameObject> lines = new List<GameObject>();
 
     Vector3 mDown;
+    Vector3 mCurrent;
     Vector3 mUp;
     float dragForce = 5;
     // Use this for initialization
@@ -109,6 +112,10 @@ public class DrawLine : MonoBehaviour {
             if (Input.GetMouseButtonDown(1))
             {
                 mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+            }
+            if (Input.GetMouseButton(1))
+            {
+                mCurrent = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             }
             if (Input.GetMouseButtonUp(1))
             {
