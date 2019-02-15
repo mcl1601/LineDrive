@@ -14,6 +14,10 @@ public class DrawLine : MonoBehaviour {
     Vector3 lastPoint = Vector3.zero;
 
     List<GameObject> lines = new List<GameObject>();
+
+    Vector3 mDown;
+    Vector3 mUp;
+    float dragForce = 10;
 	// Use this for initialization
 	void Start () {
 		
@@ -95,5 +99,33 @@ public class DrawLine : MonoBehaviour {
             Destroy(lines[lines.Count - 1]);
             lines.RemoveAt(lines.Count - 1);
         }
-	}
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+            Debug.Log("down");
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+
+            ball.AddComponent<Rigidbody2D>();
+            ball.GetComponent<Rigidbody2D>().mass = 0.2f;
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((mDown.x - mUp.x)/2 * dragForce, 0));
+            Debug.Log("up");
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        
+    }
+
+    private void OnMouseUp()
+    {
+        
+
+        
+    }
 }
