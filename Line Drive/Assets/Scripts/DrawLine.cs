@@ -13,16 +13,21 @@ public class DrawLine : MonoBehaviour {
     GameObject lineRef = null;
     Vector3 lastPoint = Vector3.zero;
     string toggle = "";
+    ToolToggle tool;
 
     List<GameObject> lines = new List<GameObject>();
-	// Use this for initialization
-	void Start () {
-         
+
+    Vector3 mDown;
+    Vector3 mUp;
+    float dragForce = 5;
+    // Use this for initialization
+    void Start () {
+        tool = GameObject.Find("SceneManager").GetComponent<ToolToggle>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        toggle = GameObject.Find("SceneManager").GetComponent<ToolToggle>().toggle;
+        toggle = tool.toggle;
         // quick reference to the current line we are drawing
         if (toggle == "Line")
         {
@@ -98,6 +103,19 @@ public class DrawLine : MonoBehaviour {
             {
                 Destroy(lines[lines.Count - 1]);
                 lines.RemoveAt(lines.Count - 1);
+            }
+        }else if(toggle == "Shoot")
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+                ball.AddComponent<Rigidbody2D>();
+                ball.GetComponent<Rigidbody2D>().mass = 0.2f;
+                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((mDown.x - mUp.x * dragForce),0));
             }
         }
         

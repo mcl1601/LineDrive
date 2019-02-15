@@ -14,5 +14,7 @@ public class ToolToggle : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.L)) toggle = "Line";
         if (Input.GetKeyDown(KeyCode.B)) toggle = "Boost";
-	}
+        if (Input.GetKeyDown(KeyCode.S)) toggle = "Shoot";
+
+    }
 }
