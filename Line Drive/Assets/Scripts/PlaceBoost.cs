@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlaceBoost : MonoBehaviour {
     public GameObject speedBoost;
-    string toggle;
+    ToggleState toggle;
 	// Use this for initialization
 	void Start () {
         
@@ -13,7 +13,7 @@ public class PlaceBoost : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         toggle = this.gameObject.GetComponent<ToolToggle>().toggle;
-        if(Input.GetMouseButtonDown(0) && toggle == "Boost")
+        if(Input.GetMouseButtonDown(0) && toggle == ToggleState.Boost)
         {
             Debug.Log("Yeet");
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));

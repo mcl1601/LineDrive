@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum ToggleState
+{
+    Line, Boost, Shoot
+}
 public class ToolToggle : MonoBehaviour {
 
-    public string toggle = "Line";
+    public ToggleState toggle = ToggleState.Line;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,15 +19,15 @@ public class ToolToggle : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            toggle = "Line";
+            toggle = ToggleState.Line;
             UpdateToggle();
         }
         if (Input.GetKeyDown(KeyCode.B)) {
-            toggle = "Boost";
+            toggle = ToggleState.Boost;
             UpdateToggle();
         }
         if (Input.GetKeyDown(KeyCode.S)) {
-            toggle = "Shoot";
+            toggle = ToggleState.Shoot;
             UpdateToggle();
         }
 
@@ -32,6 +36,6 @@ public class ToolToggle : MonoBehaviour {
 
     void UpdateToggle()
     {
-        GameObject.FindGameObjectWithTag("Text").GetComponent<TextMeshPro>().text = toggle;
+        //GameObject.FindGameObjectWithTag("Text").GetComponent<TextMeshPro>().text = toggle;
     }
 }

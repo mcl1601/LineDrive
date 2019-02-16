@@ -14,7 +14,7 @@ public class DrawLine : MonoBehaviour {
     bool wasDrawing = false;
     GameObject lineRef = null;
     Vector3 lastPoint = Vector3.zero;
-    string toggle = "";
+    ToggleState toggle = ToggleState.Line;
     ToolToggle tool;
 
     List<GameObject> lines = new List<GameObject>();
@@ -23,7 +23,7 @@ public class DrawLine : MonoBehaviour {
     Vector3 mCurrent;
     Vector3 mUp;
     GameObject powerLine;
-    float dragForce = 5;
+    float dragForce = 10f;
     // Use this for initialization
     void Start () {
         tool = GameObject.Find("SceneManager").GetComponent<ToolToggle>();
@@ -33,7 +33,7 @@ public class DrawLine : MonoBehaviour {
 	void Update () {
         toggle = tool.toggle;
         // quick reference to the current line we are drawing
-        if (toggle == "Line")
+        if (toggle == ToggleState.Line)
         {
             LineRenderer l = null;
             if (lineRef != null)
@@ -108,7 +108,7 @@ public class DrawLine : MonoBehaviour {
                 Destroy(lines[lines.Count - 1]);
                 lines.RemoveAt(lines.Count - 1);
             }
-        }else if(toggle == "Shoot")
+        }else if(toggle == ToggleState.Shoot)
         {
             if (Input.GetMouseButtonDown(1))
             {
