@@ -56,10 +56,10 @@ public class DrawLine : MonoBehaviour {
                 if (CheckMouseInput()) return;
                 // get the point
 
-                uiController.SlideUIUp();
                 // if this is the first frame of drawing
                 if (!drawing)
                 {
+                    uiController.SlideUIUp();
                     // make a new line and save the reference
                     lineRef = Instantiate(linePre, Vector3.zero, Quaternion.identity);
                     drawing = true;
@@ -86,6 +86,7 @@ public class DrawLine : MonoBehaviour {
             // first frame after not drawing anymore
             else if (wasDrawing)
             {
+                uiController.SlideUIDown();
                 drawing = false;
                 wasDrawing = false;
                 if (l.positionCount == 1)

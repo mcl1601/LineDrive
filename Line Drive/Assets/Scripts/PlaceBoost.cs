@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class PlaceBoost : MonoBehaviour {
     public GameObject speedBoost;
     public GameObject canvas;
+    public GameUIController uiController;
 
     EventSystem eSys;
     GraphicRaycaster caster;
@@ -27,6 +28,7 @@ public class PlaceBoost : MonoBehaviour {
         {
             instance = null;
             if (CheckMouseInput()) return;
+            uiController.SlideUIUp();
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             instance = Instantiate(speedBoost, mousPos, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
         }
@@ -36,6 +38,10 @@ public class PlaceBoost : MonoBehaviour {
             {
                 instance.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             }
+        }
+        if(Input.GetMouseButtonUp(0) && instance != null)
+        {
+            uiController.SlideUIDown();
         }
     }
 

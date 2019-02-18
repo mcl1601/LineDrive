@@ -9,12 +9,29 @@ public class GameUIController : MonoBehaviour {
     public Button line;
     public Button boost;
     public Button play;
+    public RectTransform arrow;
+    public float panelTransitionTime;
 
     private Button selected = null;
+    private Coroutine lastroutine;
+    private bool uiHidden = false;
 	// Use this for initialization
 	void Start () {
         selected = line;
 	}
+
+    public void ToggleUIPanel()
+    {
+        uiHidden = !uiHidden;
+        if(uiHidden)
+        {
+            SlideUIUp();
+        }
+        else
+        {
+            SlideUIDown();
+        }
+    }
 	
 	public void EnableDrawMode()
     {
@@ -38,6 +55,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = play;
         HighlightSelected();
+        SlideUIUp();
     }
 
     public void ResetSelectedButton()
@@ -58,18 +76,23 @@ public class GameUIController : MonoBehaviour {
 
     public void SlideUIUp()
     {
-        StartCoroutine(SlideUp());
+        if(lastroutine != null) StopCoroutine(lastroutine);
+        uiHidden = true;
+        lastroutine = StartCoroutine(SlideUp());
     }
 
     IEnumerator SlideUp()
     {
         float timer = 0f;
         float percent = 0f;
+        Vector2 initPos = panel.anchoredPosition;
+        Quaternion initrot = arrow.rotation;
 
-        while(percent < 1f)
+        while (percent < 1f)
         {
-            percent = timer / 0.5f;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(-50f, 50f, percent));
+            percent = timer / panelTransitionTime;
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, 50f, percent));
+            arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 0f), percent);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -77,18 +100,23 @@ public class GameUIController : MonoBehaviour {
 
     public void SlideUIDown()
     {
-        StartCoroutine(SlideDown());
+        StopCoroutine(lastroutine);
+        uiHidden = false;
+        lastroutine = StartCoroutine(SlideDown());
     }
 
     IEnumerator SlideDown()
     {
         float timer = 0f;
         float percent = 0f;
+        Vector2 initPos = panel.anchoredPosition;
+        Quaternion initrot = arrow.rotation;
 
         while (percent < 1f)
         {
-            percent = timer / 0.5f;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(50f, -50f, percent));
+            percent = timer / panelTransitionTime;
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, -50f, percent));
+            arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 180f), percent);
             timer += Time.deltaTime;
             yield return null;
         }
