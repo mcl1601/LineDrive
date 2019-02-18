@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DrawLine : MonoBehaviour {
     public GameObject linePre;
@@ -8,7 +10,8 @@ public class DrawLine : MonoBehaviour {
     public bool lineHasPhysics;
     public float minDrawDistance;
     public GameObject powerLinePref;
-
+    public GameObject canvas;
+    public GameUIController uiController;
 
     bool drawing = false;
     bool wasDrawing = false;
@@ -16,6 +19,10 @@ public class DrawLine : MonoBehaviour {
     Vector3 lastPoint = Vector3.zero;
     ToggleState toggle = ToggleState.Line;
     ToolToggle tool;
+
+    EventSystem eSys;
+    GraphicRaycaster caster;
+    PointerEventData pData;
 
     List<GameObject> lines = new List<GameObject>();
 
@@ -27,6 +34,9 @@ public class DrawLine : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tool = GameObject.Find("SceneManager").GetComponent<ToolToggle>();
+
+        caster = canvas.GetComponent<GraphicRaycaster>();
+        eSys = canvas.GetComponent<EventSystem>();
     }
 	
 	// Update is called once per frame
@@ -43,8 +53,10 @@ public class DrawLine : MonoBehaviour {
             // while holding down the mouse or finger
             if (Input.GetMouseButton(0))
             {
+                if (CheckMouseInput()) return;
                 // get the point
 
+                uiController.SlideUIUp();
                 // if this is the first frame of drawing
                 if (!drawing)
                 {
@@ -130,6 +142,22 @@ public class DrawLine : MonoBehaviour {
                 ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((mDown.x - mUp.x * dragForce),0));
             }
         }
-        
 	}
+
+    public bool CheckMouseInput()
+    {
+        pData = new PointerEventData(eSys);
+        pData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        caster.Raycast(pData, results);
+
+        if(results.Count > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

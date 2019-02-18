@@ -324,7 +324,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4846744759827794, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.96
+      value: 1.69
       objectReference: {fileID: 0}
     - target: {fileID: 4846744759827794, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
       propertyPath: m_LocalPosition.z
@@ -657,6 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedBoost: {fileID: 1546665100550488, guid: ac0f1ede52878c74699253cc41889882, type: 2}
+  canvas: {fileID: 1505808947}
 --- !u!114 &943006644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolToggle: {fileID: 943006644}
+  panel: {fileID: 1504822298}
   line: {fileID: 179474975}
   boost: {fileID: 1968646441}
   play: {fileID: 1019680482}
@@ -915,6 +917,8 @@ MonoBehaviour:
   minDrawDistance: 0.15
   powerLinePref: {fileID: 1871963064687940, guid: c04826398bc34a742b1dd18886085b95,
     type: 2}
+  canvas: {fileID: 1505808947}
+  uiController: {fileID: 943006646}
 --- !u!1001 &1174633319
 Prefab:
   m_ObjectHideFlags: 0
@@ -928,7 +932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4218769078527056, guid: 2678bee73c0b16a4287a9d5109397d12, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.43
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 4218769078527056, guid: 2678bee73c0b16a4287a9d5109397d12, type: 2}
       propertyPath: m_LocalPosition.z

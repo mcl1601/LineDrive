@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour {
     public ToolToggle toolToggle;
+    public RectTransform panel;
     public Button line;
     public Button boost;
     public Button play;
@@ -53,5 +54,43 @@ public class GameUIController : MonoBehaviour {
         c.normalColor = Color.red;
         c.highlightedColor = Color.red;
         selected.colors = c;
+    }
+
+    public void SlideUIUp()
+    {
+        StartCoroutine(SlideUp());
+    }
+
+    IEnumerator SlideUp()
+    {
+        float timer = 0f;
+        float percent = 0f;
+
+        while(percent < 1f)
+        {
+            percent = timer / 0.5f;
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(-50f, 50f, percent));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void SlideUIDown()
+    {
+        StartCoroutine(SlideDown());
+    }
+
+    IEnumerator SlideDown()
+    {
+        float timer = 0f;
+        float percent = 0f;
+
+        while (percent < 1f)
+        {
+            percent = timer / 0.5f;
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(50f, -50f, percent));
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 }
