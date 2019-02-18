@@ -23,7 +23,7 @@ public class DrawLine : MonoBehaviour {
     Vector3 mCurrent;
     Vector3 mUp;
     GameObject powerLine;
-    float dragForce = 10f;
+    float dragForce = 15f;
     // Use this for initialization
     void Start () {
         tool = GameObject.Find("SceneManager").GetComponent<ToolToggle>();
