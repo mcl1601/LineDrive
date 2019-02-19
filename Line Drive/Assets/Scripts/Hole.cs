@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Hole : MonoBehaviour {
+    public GameObject winUI, loadingScreen;
+    public Image loadingBar;
+
     GameObject ball;
     int currentLevel;
     int maxLevel = 1;
@@ -45,6 +49,28 @@ public class Hole : MonoBehaviour {
         //Increment the current level and use that to go to the next scene
         currentLevel += 1;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
-        SceneManager.LoadScene("Hole" + currentLevel);
+
+        winUI.SetActive(true);
+        //SceneManager.LoadScene("Hole" + currentLevel);
+    }
+
+    public void LoadNextLevel()
+    {
+        loadingScreen.SetActive(true);
+        winUI.SetActive(false);
+        IEnumerator l = LoadScene(currentLevel);
+        StartCoroutine(l);
+    }
+
+    IEnumerator LoadScene(int level)
+    {
+        string lvl = "Hole" + level.ToString();
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(lvl);
+
+        while (!asyncLoad.isDone)
+        {
+            loadingBar.fillAmount = asyncLoad.progress;
+            yield return null;
+        }
     }
 }

@@ -41,6 +41,7 @@ public class MainMenuController : MonoBehaviour {
             if(maxLevelUnlocked > 1)
             {
                 GameObject.Find("Continue").GetComponent<Button>().interactable = true;
+                GameObject.Find("Continue").GetComponentInChildren<Text>().text += "\n\nHole " + maxLevelUnlocked.ToString();
             }
         }
     }

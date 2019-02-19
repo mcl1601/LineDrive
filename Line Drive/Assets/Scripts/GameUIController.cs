@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUIController : MonoBehaviour {
     public ToolToggle toolToggle;
@@ -19,6 +20,16 @@ public class GameUIController : MonoBehaviour {
 	void Start () {
         selected = line;
 	}
+
+    public void QuitToMain()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public void ToggleUIPanel()
     {
