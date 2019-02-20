@@ -130,6 +130,7 @@ public class DrawLine : MonoBehaviour {
             }
         }else if(toggle == ToggleState.Shoot)
         {
+            if (ball.GetComponent<Rigidbody2D>()) return;
             if (Input.GetMouseButtonDown(0))
             {
                 if (CheckMouseInput()) return;
@@ -151,6 +152,9 @@ public class DrawLine : MonoBehaviour {
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
                 ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((mDown.x - mUp.x * dragForce),0));
+                mDown = Vector3.zero;
+                mCurrent = Vector3.zero;
+                mUp = Vector3.zero;
             }
         }
 	}
