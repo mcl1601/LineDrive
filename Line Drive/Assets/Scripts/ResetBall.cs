@@ -20,10 +20,12 @@ public class ResetBall : MonoBehaviour {
             //Debug.Log(botY);
             ResetBallPosition();            
         }
-	}
+
+    }
 
     public void ResetBallPosition()
     {
+        if (!this.GetComponent<Rigidbody2D>()) return;
         this.transform.position = startPos;
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Destroy(this.GetComponent<Rigidbody2D>());
