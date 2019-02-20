@@ -123,20 +123,20 @@ public class DrawLine : MonoBehaviour {
             }
         }else if(toggle == ToggleState.Shoot)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (CheckMouseInput()) return;
                 mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 powerLine = GameObject.Instantiate(powerLinePref, ball.transform.position, Quaternion.identity);
             }
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(0))
             {
                 if (CheckMouseInput()) return;
                 mCurrent = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 powerLine.transform.localScale = new Vector3((mDown.x - mCurrent.x)/2, .25f, 0);
 
             }
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(0))
             {
                 Destroy(powerLine);
                 mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));

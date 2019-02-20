@@ -11,7 +11,7 @@ public class ResetBall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(this.transform.position.y <= -6)
+		if(this.transform.position.y <= -6 || Input.GetKeyDown("r"))
         {
             ResetBallPosition();            
         }
