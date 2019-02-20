@@ -13,9 +13,13 @@ public class ResetBall : MonoBehaviour {
 	void Update () {
 		if(this.transform.position.y <= -6)
         {
-            
-            this.transform.position = startPos;
-            Destroy(this.GetComponent<Rigidbody2D>());
+            ResetBallPosition();            
         }
 	}
+
+    public void ResetBallPosition()
+    {
+        this.transform.position = startPos;
+        Destroy(this.GetComponent<Rigidbody2D>());
+    }
 }

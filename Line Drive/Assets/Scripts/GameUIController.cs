@@ -12,13 +12,20 @@ public class GameUIController : MonoBehaviour {
     public Button play;
     public RectTransform arrow;
     public float panelTransitionTime;
+    public GameObject pauseScreen;
 
     private Button selected = null;
     private Coroutine lastroutine;
     private bool uiHidden = false;
+    private float topY;
+    private float bottomY;
+
+    private Vector3 savedVelocity;
 	// Use this for initialization
 	void Start () {
         selected = line;
+        topY = -panel.anchoredPosition.y;
+        bottomY = -topY;
 	}
 
     public void QuitToMain()
@@ -29,6 +36,11 @@ public class GameUIController : MonoBehaviour {
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ResetBall()
+    {
+        GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
     }
 
     public void ToggleUIPanel()
@@ -42,6 +54,24 @@ public class GameUIController : MonoBehaviour {
         {
             SlideUIDown();
         }
+    }
+
+    public void PauseGame()
+    {
+        pauseScreen.SetActive(true);
+        Rigidbody2D r = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        if (r == null) return;
+        savedVelocity = r.velocity;
+        r.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void ResumeGame()
+    {
+        pauseScreen.SetActive(false);
+        Rigidbody2D r = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        if (r == null) return;
+        r.bodyType = RigidbodyType2D.Dynamic;
+        r.velocity = savedVelocity;
     }
 	
 	public void EnableDrawMode()
@@ -102,7 +132,7 @@ public class GameUIController : MonoBehaviour {
         while (percent < 1f)
         {
             percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, 50f, percent));
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, topY, percent));
             arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 0f), percent);
             timer += Time.deltaTime;
             yield return null;
@@ -126,7 +156,7 @@ public class GameUIController : MonoBehaviour {
         while (percent < 1f)
         {
             percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, -50f, percent));
+            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, bottomY, percent));
             arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 180f), percent);
             timer += Time.deltaTime;
             yield return null;
