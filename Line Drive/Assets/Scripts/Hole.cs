@@ -15,21 +15,11 @@ public class Hole : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ball = GameObject.Find("Ball");
-        //If we're at the first hole, initialize the current hole at 1
+        //Set the hole to the number at the end of the scene name
         currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Split('e')[1]);
+        //Make sure max level is accurate
         maxLevel = PlayerPrefs.GetInt("maxLevel");
 
-        //If not, set the current level to what it's saved as in the playerPref
-
-        //If the current level we're on exceeds the recorded max level, make this level the new max level
-        /*if (currentLevel > PlayerPrefs.GetInt("maxLevel"))
-        {
-            maxLevel = currentLevel;
-            PlayerPrefs.SetInt("maxLevel", maxLevel);
-        }*/
-        Debug.Log("Current Level: " + currentLevel);
-        Debug.Log("Max Level: " + PlayerPrefs.GetInt("maxLevel"));
-        Debug.Log("Max Level?? " + maxLevel);
 	}
 	
 	// Update is called once per frame
@@ -40,7 +30,7 @@ public class Hole : MonoBehaviour {
     {
         //Only check for ball collision
         if (collision.gameObject.name != "Ball") return;
-        //Make it so we can't go past the max Level
+        //Increment Max Level
         if(currentLevel == maxLevel)
         {
             maxLevel++;
@@ -51,7 +41,7 @@ public class Hole : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
         winUI.SetActive(true);
-        //SceneManager.LoadScene("Hole" + currentLevel);
+ 
     }
 
     public void LoadNextLevel()
