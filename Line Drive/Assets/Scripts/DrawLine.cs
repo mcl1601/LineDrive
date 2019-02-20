@@ -138,6 +138,7 @@ public class DrawLine : MonoBehaviour {
             }
             if (Input.GetMouseButtonUp(0))
             {
+                if (CheckMouseInput()) return;
                 Destroy(powerLine);
                 mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 ball.AddComponent<Rigidbody2D>();
