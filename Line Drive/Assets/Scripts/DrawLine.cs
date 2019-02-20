@@ -12,7 +12,8 @@ public class DrawLine : MonoBehaviour {
     public GameObject powerLinePref;
     public GameObject canvas;
     public GameUIController uiController;
-    public int lineJuice;
+    public int lineJuice = 100;
+    public Image juiceBar;
 
     bool drawing = false;
     bool wasDrawing = false;
@@ -20,6 +21,7 @@ public class DrawLine : MonoBehaviour {
     Vector3 lastPoint = Vector3.zero;
     ToggleState toggle = ToggleState.Line;
     ToolToggle tool;
+    float juiceInitial;
 
     EventSystem eSys;
     GraphicRaycaster caster;
@@ -35,9 +37,9 @@ public class DrawLine : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tool = GameObject.Find("SceneManager").GetComponent<ToolToggle>();
-        lineJuice = 100;
         caster = canvas.GetComponent<GraphicRaycaster>();
         eSys = canvas.GetComponent<EventSystem>();
+        juiceInitial = (float)lineJuice;
     }
 	
 	// Update is called once per frame
@@ -53,65 +55,63 @@ public class DrawLine : MonoBehaviour {
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             // while holding down the mouse or finger
             //Check to see if there's still line juice
-            if(lineJuice > 0)
+            if (Input.GetMouseButton(0) && lineJuice > 0)
             {
-                if (Input.GetMouseButton(0))
+                if (CheckMouseInput()) return;
+                // get the point
+
+                // if this is the first frame of drawing
+                if (!drawing)
                 {
-                    if (CheckMouseInput()) return;
-                    // get the point
-
-                    // if this is the first frame of drawing
-                    if (!drawing)
-                    {
-                        uiController.SlideUIUp();
-                        // make a new line and save the reference
-                        lineRef = Instantiate(linePre, Vector3.zero, Quaternion.identity);
-                        drawing = true;
-                        l = lineRef.GetComponent<LineRenderer>();
-                        // set the frst point of the line and add it to the list
-                        l.SetPosition(0, mousPos);
-                        lastPoint = mousPos;
-                        lines.Add(lineRef);
-                        return;
-                    }
-
-                    wasDrawing = true;
-
-                    // not first frame of drawing
-                    // have we moved enough to add another segment?
-                    if ((lastPoint - mousPos).magnitude < minDrawDistance) return;
-
-                    // add a new point at the current location
-                    l.positionCount++;
-                    l.SetPosition(l.positionCount - 1, mousPos);
+                    uiController.SlideUIUp();
+                    // make a new line and save the reference
+                    lineRef = Instantiate(linePre, Vector3.zero, Quaternion.identity);
+                    drawing = true;
+                    l = lineRef.GetComponent<LineRenderer>();
+                    // set the frst point of the line and add it to the list
+                    l.SetPosition(0, mousPos);
                     lastPoint = mousPos;
-                    //Decrement Line Juice
-                    lineJuice--;
+                    lines.Add(lineRef);
+                    return;
                 }
-                // first frame after not drawing anymore
-                else if (wasDrawing)
-                {
-                    uiController.SlideUIDown();
-                    drawing = false;
-                    wasDrawing = false;
-                    if (l.positionCount == 1)
-                    {
-                        l.positionCount++;
-                        l.SetPosition(1, mousPos + new Vector3(0.1f, 0f, 0f));
-                    }
-                    // set up the edge collider using the line points
-                    EdgeCollider2D e = lineRef.GetComponent<EdgeCollider2D>();
-                    Vector2[] points = new Vector2[l.positionCount];
-                    for (int i = 0; i < l.positionCount; i++)
-                    {
-                        points[i] = new Vector2(l.GetPosition(i).x, l.GetPosition(i).y);
-                    }
-                    e.points = points;
 
-                    // add a rigidbody for gravity
-                    if (lineHasPhysics)
-                        lineRef.AddComponent<Rigidbody2D>();
+                wasDrawing = true;
+
+                // not first frame of drawing
+                // have we moved enough to add another segment?
+                if ((lastPoint - mousPos).magnitude < minDrawDistance) return;
+
+                // add a new point at the current location
+                l.positionCount++;
+                l.SetPosition(l.positionCount - 1, mousPos);
+                lastPoint = mousPos;
+                //Decrement Line Juice
+                lineJuice--;
+                UpdateJuiveBar();
+            }
+            // first frame after not drawing anymore
+            else if (wasDrawing)
+            {
+                uiController.SlideUIDown();
+                drawing = false;
+                wasDrawing = false;
+                if (l.positionCount == 1)
+                {
+                    l.positionCount++;
+                    l.SetPosition(1, mousPos + new Vector3(0.1f, 0f, 0f));
                 }
+                // set up the edge collider using the line points
+                EdgeCollider2D e = lineRef.GetComponent<EdgeCollider2D>();
+                Vector2[] points = new Vector2[l.positionCount];
+                for (int i = 0; i < l.positionCount; i++)
+                {
+                    points[i] = new Vector2(l.GetPosition(i).x, l.GetPosition(i).y);
+                }
+                e.points = points;
+
+                // add a rigidbody for gravity
+                if (lineHasPhysics)
+                    lineRef.AddComponent<Rigidbody2D>();
             }
             
 
@@ -170,5 +170,15 @@ public class DrawLine : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void UpdateJuiveBar()
+    {
+        float percent = (float)lineJuice / juiceInitial;
+        juiceBar.fillAmount = percent;
+        if(percent > 0.5f)
+            juiceBar.color = Color.Lerp(Color.yellow, Color.green, (percent - 0.5f) / 0.5f);
+        else
+            juiceBar.color = Color.Lerp(Color.red, Color.yellow, (percent) / 0.5f);
     }
 }

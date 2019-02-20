@@ -218,6 +218,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &754789729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114883717234164566, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2038977694}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &805421197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1540458015906544, guid: d4fa69ce17094d244ac1adaaf140fa2d,
@@ -595,6 +601,8 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1132455440}
   uiController: {fileID: 943006646}
+  lineJuice: 100
+  juiceBar: {fileID: 754789729}
 --- !u!1 &1132455440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1383668399906848, guid: d4fa69ce17094d244ac1adaaf140fa2d,
