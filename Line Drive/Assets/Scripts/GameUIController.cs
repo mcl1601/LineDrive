@@ -14,6 +14,9 @@ public class GameUIController : MonoBehaviour {
     public float panelTransitionTime;
     public GameObject pauseScreen;
 
+    // Stack used to track the objects last placed by the player
+    public Stack<GameObject> placedObjects;
+
     private Button selected = null;
     private Coroutine lastroutine;
     private bool uiHidden = false;
@@ -104,6 +107,30 @@ public class GameUIController : MonoBehaviour {
         ColorBlock c = selected.colors;
         c.normalColor = Color.white;
         selected.colors = c;
+    }
+
+    /// <summary>
+    /// Will reverse the last placement action the player took
+    /// Includes drawing lines, placing boost pads, and placing bounce pads
+    /// </summary>
+    public void UndoLastPlacement()
+    {
+        GameObject last = placedObjects.Pop();
+
+        //check if its a line and if so, you need to return the amount of line juice corresponding to the removed line points
+
+
+        Destroy(last);
+    }
+
+    /// <summary>
+    /// If the player's pointer moves within the collider of an object it is removed
+    /// Can remove anything that the player can place
+    /// If moved over a line, the segment will be deleted (that's the goal anyway)
+    /// </summary>
+    public void RemoveLineSection()
+    {
+
     }
 
 
