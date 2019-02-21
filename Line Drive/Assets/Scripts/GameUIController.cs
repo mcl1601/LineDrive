@@ -46,7 +46,13 @@ public class GameUIController : MonoBehaviour {
 
     public void ResetBall()
     {
-        GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
+        if (toolToggle.toggle == ToggleState.Shoot)
+        {
+            GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
+            return;
+        }
+        else
+            UndoLastPlacement();
     }
 
     public void ToggleUIPanel()
@@ -86,6 +92,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = line;
         HighlightSelected();
+        ChangeUndo(false);
     }
 
     public void EnableBoostMode()
@@ -94,6 +101,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = boost;
         HighlightSelected();
+        ChangeUndo(false);
     }
 
     public void EnableShootMode()
@@ -103,6 +111,14 @@ public class GameUIController : MonoBehaviour {
         selected = play;
         HighlightSelected();
         SlideUIUp();
+        ChangeUndo(true);
+    }
+
+    public void ChangeUndo(bool reset)
+    {
+        GameObject g = GameObject.Find("Reset");
+        g.transform.GetChild(0).gameObject.SetActive(reset);
+        g.transform.GetChild(1).gameObject.SetActive(!reset);
     }
 
     public void ResetSelectedButton()
@@ -118,6 +134,9 @@ public class GameUIController : MonoBehaviour {
     /// </summary>
     public void UndoLastPlacement()
     {
+        if (placedObjects.Count < 1)
+            return;
+
         GameObject last = placedObjects.Pop();
         Debug.Log(last);
         Debug.Log(last.tag);
