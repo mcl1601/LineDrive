@@ -61,6 +61,7 @@ public class MainMenuController : MonoBehaviour {
     public void NewGame()
     {
         PlayerPrefs.SetInt("maxLevel", 1);
+        PlayerPrefs.SetInt("hasViewedInstructions", 0);
         maxLevelUnlocked = 1;
         LoadLevel(1);
     }

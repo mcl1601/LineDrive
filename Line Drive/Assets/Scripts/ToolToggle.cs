@@ -5,14 +5,14 @@ using TMPro;
 
 public enum ToggleState
 {
-    Line, Boost, Shoot
+    Line, Boost, Shoot, None
 }
 public class ToolToggle : MonoBehaviour {
 
-    public ToggleState toggle = ToggleState.Line;
+    public ToggleState toggle;
 	// Use this for initialization
 	void Start () {
-		
+        toggle = ToggleState.None;
 	}
 	
 	// Update is called once per frame

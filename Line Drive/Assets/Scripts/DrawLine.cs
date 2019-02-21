@@ -40,6 +40,7 @@ public class DrawLine : MonoBehaviour {
         caster = canvas.GetComponent<GraphicRaycaster>();
         eSys = canvas.GetComponent<EventSystem>();
         juiceInitial = (float)lineJuice;
+        Debug.Log(tool.toggle);
     }
 	
 	// Update is called once per frame
