@@ -29,6 +29,9 @@ public class GameUIController : MonoBehaviour {
         selected = line;
         topY = -panel.anchoredPosition.y;
         bottomY = -topY;
+
+        // Init stack
+        placedObjects = new Stack<GameObject>();
 	}
 
     public void QuitToMain()
@@ -116,9 +119,22 @@ public class GameUIController : MonoBehaviour {
     public void UndoLastPlacement()
     {
         GameObject last = placedObjects.Pop();
+        Debug.Log(last);
+        Debug.Log(last.tag);
 
         //check if its a line and if so, you need to return the amount of line juice corresponding to the removed line points
-
+        switch (last.tag)
+        {
+            case "line":
+                Camera.main.GetComponent<DrawLine>().lineJuice += last.GetComponent<EdgeCollider2D>().pointCount - 1;
+                Camera.main.GetComponent<DrawLine>().UpdateJuiceBar();
+                Debug.Log("triggered");
+                break;
+            case "speed":
+                break;
+            case "bounce":
+                break;
+        }
 
         Destroy(last);
     }

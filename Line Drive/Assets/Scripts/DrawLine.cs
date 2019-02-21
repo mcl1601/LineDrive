@@ -45,6 +45,17 @@ public class DrawLine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         toggle = tool.toggle;
+
+        // Delete the last user placed item if there is one
+        // Don't delete if in shoot mode
+        if (Input.GetKeyDown(KeyCode.Z) && uiController.placedObjects.Count > 0 && toggle != ToggleState.Shoot)
+        {
+            //Destroy(lines[lines.Count - 1]);
+            //lines.RemoveAt(lines.Count - 1);
+
+            uiController.UndoLastPlacement();
+        }
+
         // quick reference to the current line we are drawing
         if (toggle == ToggleState.Line)
         {
@@ -87,7 +98,7 @@ public class DrawLine : MonoBehaviour {
                 lastPoint = mousPos;
                 //Decrement Line Juice
                 lineJuice--;
-                UpdateJuiveBar();
+                UpdateJuiceBar();
             }
             // first frame after not drawing anymore
             else if (wasDrawing)
@@ -112,6 +123,9 @@ public class DrawLine : MonoBehaviour {
                 // add a rigidbody for gravity
                 if (lineHasPhysics)
                     lineRef.AddComponent<Rigidbody2D>();
+
+                // Add it to the stack of user-placed items
+                uiController.placedObjects.Push(lineRef);
             }
             
 
@@ -120,13 +134,6 @@ public class DrawLine : MonoBehaviour {
             {
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
-            }
-
-            // delete the last made line
-            if (Input.GetKeyDown(KeyCode.Z) && lines.Count > 0)
-            {
-                Destroy(lines[lines.Count - 1]);
-                lines.RemoveAt(lines.Count - 1);
             }
         }else if(toggle == ToggleState.Shoot)
         {
@@ -176,7 +183,7 @@ public class DrawLine : MonoBehaviour {
         return false;
     }
 
-    public void UpdateJuiveBar()
+    public void UpdateJuiceBar()
     {
         float percent = (float)lineJuice / juiceInitial;
         juiceBar.fillAmount = percent;
