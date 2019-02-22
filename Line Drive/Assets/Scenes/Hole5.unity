@@ -539,6 +539,11 @@ MonoBehaviour:
   uiController: {fileID: 943006646}
   lineJuice: 100
   juiceBar: {fileID: 1981754495}
+--- !u!1 &1124316042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1715017299556522, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2038977694}
 --- !u!1 &1132455440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1383668399906848, guid: d4fa69ce17094d244ac1adaaf140fa2d,
@@ -651,6 +656,11 @@ Prefab:
       propertyPath: loadingBar
       value: 
       objectReference: {fileID: 1216787475}
+    - target: {fileID: 114410467045077516, guid: bf0f55637f7b73d42a98653ee060b38a,
+        type: 2}
+      propertyPath: nextBtn
+      value: 
+      objectReference: {fileID: 1124316042}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf0f55637f7b73d42a98653ee060b38a, type: 2}
   m_IsPrefabAsset: 0

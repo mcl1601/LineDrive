@@ -8,11 +8,11 @@ using UnityEngine.UI;
 public class Hole : MonoBehaviour {
     public GameObject winUI, loadingScreen;
     public Image loadingBar;
+    public GameObject nextBtn;
 
     GameObject ball;
     int currentLevel;
     int maxLevel = 1;
-    private List<string> scenesInBuild = new List<string>();
 	// Use this for initialization
 	void Start () {
         ball = GameObject.Find("Ball");
@@ -22,12 +22,6 @@ public class Hole : MonoBehaviour {
         //Make sure max level is accurate
         maxLevel = PlayerPrefs.GetInt("maxLevel");
         Debug.Log("Max Level: " + maxLevel);
-        
-        for(int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-        {
-            scenesInBuild.Add(SceneManager.GetSceneByBuildIndex(i).name);
-            Debug.Log(SceneManager.GetSceneByBuildIndex(i).name);
-        }
     }
 	
 	// Update is called once per frame
@@ -38,9 +32,9 @@ public class Hole : MonoBehaviour {
     {
         //Only check for ball collision
         if (collision.gameObject.name != "Ball") return;
-        if(!scenesInBuild.Contains("Hole" + (currentLevel + 1).ToString()))
+        if(SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings)
         {
-            GameObject.Find("Next").SetActive(false);
+            nextBtn.SetActive(false);
 
             winUI.SetActive(true);
 
