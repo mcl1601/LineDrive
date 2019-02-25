@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 943006644}
   - component: {fileID: 943006643}
   - component: {fileID: 943006646}
+  - component: {fileID: 943006647}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -504,6 +505,21 @@ MonoBehaviour:
   arrow: {fileID: 2038977695}
   panelTransitionTime: 0.25
   pauseScreen: {fileID: 2038977700}
+--- !u!114 &943006647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943006642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416275a5d124f494698f2f6aa8b891fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winUI: {fileID: 805421197}
+  star3val: 75
+  star2val: 50
+  star1val: 25
 --- !u!1 &1074276486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1219,11 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224233133325390456, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4fa69ce17094d244ac1adaaf140fa2d, type: 2}
