@@ -8,6 +8,7 @@ TagManager:
   - bounce
   - line
   - speed
+  - KobeTrigger
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,14 @@ public class Hole : MonoBehaviour {
     GameObject ball;
     int currentLevel;
     int maxLevel = 1;
+
+    bool kobe = true;
+
+    public bool Kobe
+    {
+        get { return kobe; }
+        set { kobe = value; }
+    }
 	// Use this for initialization
 	void Start () {
         ball = GameObject.Find("Ball");
@@ -57,6 +65,9 @@ public class Hole : MonoBehaviour {
 
         // disable the collider
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        if (kobe)
+            Debug.Log("KOBE!");
 
     }
 

@@ -17,6 +17,7 @@ public class DrawLine : MonoBehaviour {
 
     bool drawing = false;
     bool wasDrawing = false;
+    bool wasShooting = false;
     GameObject lineRef = null;
     Vector3 lastPoint = Vector3.zero;
     ToggleState toggle = ToggleState.Line;
@@ -40,7 +41,6 @@ public class DrawLine : MonoBehaviour {
         caster = canvas.GetComponent<GraphicRaycaster>();
         eSys = canvas.GetComponent<EventSystem>();
         juiceInitial = (float)lineJuice;
-        Debug.Log(tool.toggle);
     }
 	
 	// Update is called once per frame
@@ -144,25 +144,26 @@ public class DrawLine : MonoBehaviour {
                 if (CheckMouseInput()) return;
                 mDown = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 powerLine = GameObject.Instantiate(powerLinePref, ball.transform.position, Quaternion.identity);
+                wasShooting = true;
             }
-            if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0))
             {
                 if (CheckMouseInput()) return;
                 mCurrent = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 powerLine.transform.localScale = new Vector3((mDown.x - mCurrent.x)/2, .25f, 0);
-
             }
-            if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0) || wasShooting)
             {
                 if (CheckMouseInput()) return;
                 Destroy(powerLine);
                 mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
-                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((mDown.x - mUp.x * dragForce),0));
+                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(((mDown.x - mUp.x) * dragForce),0));
                 mDown = Vector3.zero;
                 mCurrent = Vector3.zero;
                 mUp = Vector3.zero;
+                wasShooting = false;
             }
         }
 	}
