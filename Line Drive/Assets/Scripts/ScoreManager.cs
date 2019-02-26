@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour {
 
     // Use this for initialization
     public GameObject winUI;
+    [Header("Score Thresholds")]
     public int star3val;
     public int star2val;
     public int star1val;
