@@ -92,7 +92,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = line;
         HighlightSelected();
-        ChangeUndo(false);
+        //ChangeUndo(false);
     }
 
     public void EnableBoostMode()
@@ -101,7 +101,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = boost;
         HighlightSelected();
-        ChangeUndo(false);
+        //ChangeUndo(false);
     }
 
     public void EnableShootMode()
@@ -109,9 +109,10 @@ public class GameUIController : MonoBehaviour {
         toolToggle.toggle = ToggleState.Shoot;
         ResetSelectedButton();
         selected = play;
-        HighlightSelected();
+        selected.GetComponent<Image>().color = Color.green;
+        //HighlightSelected();
         SlideUIUp();
-        ChangeUndo(true);
+        //ChangeUndo(true);
     }
 
     public void ChangeUndo(bool reset)
@@ -123,9 +124,13 @@ public class GameUIController : MonoBehaviour {
 
     public void ResetSelectedButton()
     {
-        ColorBlock c = selected.colors;
-        c.normalColor = Color.white;
-        selected.colors = c;
+        if(selected.gameObject.name == "PlayBtn")
+            selected.GetComponent<Image>().color = Color.white;
+        else
+            selected.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f);
+        /*ColorBlock c = selected.colors;
+        c.normalColor = new Color(255f,255f,255f,0f);
+        selected.colors = c;*/
     }
 
     /// <summary>
@@ -171,10 +176,11 @@ public class GameUIController : MonoBehaviour {
 
     public void HighlightSelected()
     {
-        ColorBlock c = selected.colors;
-        c.normalColor = Color.red;
-        c.highlightedColor = Color.red;
-        selected.colors = c;
+        selected.GetComponent<Image>().color = Color.white;
+        /*ColorBlock c = selected.colors;
+        c.normalColor = Color.white;
+        c.highlightedColor = Color.white;
+        selected.colors = c;*/
     }
 
     public void SlideUIUp()
@@ -189,13 +195,13 @@ public class GameUIController : MonoBehaviour {
         float timer = 0f;
         float percent = 0f;
         Vector2 initPos = panel.anchoredPosition;
-        Quaternion initrot = arrow.rotation;
+        //Quaternion initrot = arrow.rotation;
 
         while (percent < 1f)
         {
             percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, topY, percent));
-            arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 0f), percent);
+            panel.anchoredPosition = new Vector2(initPos.x, Mathf.Lerp(initPos.y, topY, percent));
+            //arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 0f), percent);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -213,13 +219,13 @@ public class GameUIController : MonoBehaviour {
         float timer = 0f;
         float percent = 0f;
         Vector2 initPos = panel.anchoredPosition;
-        Quaternion initrot = arrow.rotation;
+        //Quaternion initrot = arrow.rotation;
 
         while (percent < 1f)
         {
             percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(0f, Mathf.Lerp(initPos.y, bottomY, percent));
-            arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 180f), percent);
+            panel.anchoredPosition = new Vector2(initPos.x, Mathf.Lerp(initPos.y, bottomY, percent));
+            //arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 180f), percent);
             timer += Time.deltaTime;
             yield return null;
         }
