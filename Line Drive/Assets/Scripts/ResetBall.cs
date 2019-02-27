@@ -29,5 +29,6 @@ public class ResetBall : MonoBehaviour {
         this.transform.position = startPos;
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         Destroy(this.GetComponent<Rigidbody2D>());
+        GameObject.Find("BottomHole").GetComponent<Hole>().Kobe = true;
     }
 }
