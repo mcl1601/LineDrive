@@ -9,6 +9,7 @@ TagManager:
   - line
   - speed
   - KobeTrigger
+  - NoDraw
   layers:
   - Default
   - TransparentFX
