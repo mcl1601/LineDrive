@@ -71,7 +71,7 @@ public class DrawLine : MonoBehaviour {
             bool drawable = true;
             foreach(GameObject g in noDraw)
             {
-                if (g.GetComponent<BoxCollider2D>().bounds.Contains(new Vector3(mousPos.x, mousPos.y, 0)))
+                if (g.GetComponent<BoxCollider2D>().bounds.Contains(new Vector3(mousPos.x, mousPos.y, 1)))
                 {
                     drawable = false;
                     break;
