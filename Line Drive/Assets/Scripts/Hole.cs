@@ -67,7 +67,10 @@ public class Hole : MonoBehaviour {
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         if (kobe)
-            Debug.Log("KOBE!");
+        {
+            if(transform.parent.GetChild(3).gameObject.GetComponent<KobeZone>().CheckForKobe())
+                Debug.Log("KOBE!");
+        }
 
     }
 

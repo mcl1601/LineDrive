@@ -69,12 +69,12 @@ public class DrawLine : MonoBehaviour {
             //Check to see if there's still line juice
             if (Input.GetMouseButton(0) && lineJuice > 0)
             {
-                if (CheckMouseInput()) return;
                 // get the point
 
                 // if this is the first frame of drawing
                 if (!drawing)
                 {
+                    if (CheckMouseInput()) return;
                     uiController.SlideUIUp();
                     // make a new line and save the reference
                     lineRef = Instantiate(linePre, Vector3.zero, Quaternion.identity);
