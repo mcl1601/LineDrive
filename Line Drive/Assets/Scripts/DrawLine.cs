@@ -67,14 +67,24 @@ public class DrawLine : MonoBehaviour {
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             // while holding down the mouse or finger
             //Check to see if there's still line juice
-            if (Input.GetMouseButton(0) && lineJuice > 0)
+            GameObject[] noDraw = GameObject.FindGameObjectsWithTag("NoDraw");
+            bool drawable = true;
+            foreach(GameObject g in noDraw)
             {
-                if (CheckMouseInput()) return;
+                if (g.GetComponent<BoxCollider2D>().bounds.Contains(new Vector3(mousPos.x, mousPos.y, 1)))
+                {
+                    drawable = false;
+                    break;
+                }
+            }
+            if (Input.GetMouseButton(0) && lineJuice > 0 && drawable)
+            {
                 // get the point
 
                 // if this is the first frame of drawing
                 if (!drawing)
                 {
+                    if (CheckMouseInput()) return;
                     uiController.SlideUIUp();
                     // make a new line and save the reference
                     lineRef = Instantiate(linePre, Vector3.zero, Quaternion.identity);
