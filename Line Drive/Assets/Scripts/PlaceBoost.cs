@@ -30,7 +30,7 @@ public class PlaceBoost : MonoBehaviour {
             if (CheckMouseInput()) return;
             uiController.SlideUIUp();
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
-            instance = Instantiate(speedBoost, mousPos, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
+            instance = Instantiate(speedBoost, mousPos, Quaternion.identity);
 
             // Add it to the stack of user-placed items
             uiController.placedObjects.Push(instance);

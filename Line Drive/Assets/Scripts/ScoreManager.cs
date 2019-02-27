@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour {
     public int star1val;
     int lineJuice;
     public int stars = 0;
-    public Sprite starObj;
+    public GameObject starObj;
 	void Start () {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
 	}
@@ -29,16 +29,21 @@ public class ScoreManager : MonoBehaviour {
         else if (lineJuice >= star1val) stars = 1;
         else stars = 0;
 
-        
+        StartCoroutine(SpawnStars());
        
     }
     IEnumerator SpawnStars()
     {
+        // get the container to spawn the stars in
+        Transform parent = GameObject.Find("StarGroup").transform;
+        // wait a bit to spawn the first star
+        yield return new WaitForSeconds(0.5f);
         while (stars != 0)
         {
-            Instantiate(starObj);
+            // spawn the star in the parent container
+            Instantiate(starObj, parent);
             stars--;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         }
     }
 }

@@ -12,15 +12,18 @@ public class KobeZone : MonoBehaviour {
     public bool CheckForKobe()
     {
         GameObject[] go = GameObject.FindGameObjectsWithTag("line");
-        Collider2D[] col = new Collider2D[go.Length];
-        for(int i = 0; i < go.Length; i++)
+        BoxCollider2D b = gameObject.GetComponent<BoxCollider2D>();
+        foreach(GameObject g in go)
         {
-            col[i] = go[i].GetComponent<Collider2D>();
+            EdgeCollider2D e = g.GetComponent<EdgeCollider2D>();
+            foreach(Vector2 p in e.points)
+            {
+                if(b.OverlapPoint(p))
+                {
+                    return false;
+                }
+            }
         }
-        Debug.Log("Num Lines: " + col.Length);
-        if (gameObject.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), col) > 0)
-            return false;
-        else
-            return true;
+        return true;
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Hole : MonoBehaviour {
     public GameObject winUI, loadingScreen;
@@ -69,10 +70,27 @@ public class Hole : MonoBehaviour {
         // disable the collider
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
+        // if the ball didn't touch the ledges
         if (kobe)
         {
-            if(transform.parent.GetChild(3).gameObject.GetComponent<KobeZone>().CheckForKobe())
-                Debug.Log("KOBE!");
+            // check if there are lines above the hole
+            if (transform.parent.GetChild(3).gameObject.GetComponent<KobeZone>().CheckForKobe())
+            {
+                // good kobe, change the text
+                GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "KOBE!";
+            }
+            else
+            {
+                // no kobe, reset text
+                Debug.Log("Line in Kobe zone, no kobe");
+                GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Hole in One!";
+            }
+        }
+        else
+        {
+            // no kobe, reset text
+            Debug.Log("Hit Ledges, no Kobe");
+            GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Hole in One!";
         }
 
     }
