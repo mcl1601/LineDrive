@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 943006644}
   - component: {fileID: 943006643}
   - component: {fileID: 943006646}
+  - component: {fileID: 943006647}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -463,6 +464,20 @@ MonoBehaviour:
   arrow: {fileID: 0}
   panelTransitionTime: 0.25
   pauseScreen: {fileID: 2038977700}
+--- !u!114 &943006647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943006642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416275a5d124f494698f2f6aa8b891fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  star3val: 75
+  star2val: 50
+  star1val: 25
 --- !u!1 &1074276486
 GameObject:
   m_ObjectHideFlags: 0

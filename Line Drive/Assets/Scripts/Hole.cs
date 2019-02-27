@@ -16,6 +16,8 @@ public class Hole : MonoBehaviour {
 
     bool kobe = true;
 
+    private ScoreManager scoreScript;
+
     public bool Kobe
     {
         get { return kobe; }
@@ -30,6 +32,7 @@ public class Hole : MonoBehaviour {
         //Make sure max level is accurate
         maxLevel = PlayerPrefs.GetInt("maxLevel");
         Debug.Log("Max Level: " + maxLevel);
+        scoreScript = GameObject.Find("SceneManager").GetComponent<ScoreManager>();
     }
 	
 	// Update is called once per frame
@@ -62,7 +65,7 @@ public class Hole : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
         winUI.SetActive(true);
-
+        scoreScript.showScore();
         // disable the collider
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
