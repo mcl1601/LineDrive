@@ -55,7 +55,7 @@ public class Hole : MonoBehaviour {
             return;
         }
         //Increment Max Level
-        if (currentLevel == maxLevel)
+        if (currentLevel >= maxLevel)
         {
             maxLevel++;
             Debug.Log("Incrementing max level to: " + maxLevel);

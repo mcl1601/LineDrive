@@ -23,7 +23,7 @@ public class Instructions : MonoBehaviour {
         {
             parent.transform.GetChild(acriveScreen).gameObject.SetActive(false);
             acriveScreen++;
-            if(acriveScreen == 5)
+            if(acriveScreen == 6)
             {
                 parent.SetActive(false);
                 PlayerPrefs.SetInt("hasViewedInstructions", 1);

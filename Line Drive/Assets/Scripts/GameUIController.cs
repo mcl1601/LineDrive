@@ -46,13 +46,7 @@ public class GameUIController : MonoBehaviour {
 
     public void ResetBall()
     {
-        if (toolToggle.toggle == ToggleState.Shoot)
-        {
-            GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
-            return;
-        }
-        else
-            UndoLastPlacement();
+        GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
     }
 
     public void ToggleUIPanel()
