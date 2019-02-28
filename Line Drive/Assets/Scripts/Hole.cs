@@ -48,22 +48,21 @@ public class Hole : MonoBehaviour {
         {
             nextBtn.SetActive(false);
 
-            winUI.SetActive(true);
-
-            // disable the collider
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            return;
         }
-        //Increment Max Level
-        if (currentLevel >= maxLevel)
+        else
         {
-            maxLevel++;
-            Debug.Log("Incrementing max level to: " + maxLevel);
-            PlayerPrefs.SetInt("maxLevel", maxLevel);
+            //Increment Max Level
+            if (currentLevel >= maxLevel)
+            {
+                maxLevel++;
+                Debug.Log("Incrementing max level to: " + maxLevel);
+                PlayerPrefs.SetInt("maxLevel", maxLevel);
+            }
+            //Increment the current level and use that to go to the next scene
+            currentLevel += 1;
+            PlayerPrefs.SetInt("CurrentLevel", currentLevel);
         }
-        //Increment the current level and use that to go to the next scene
-        currentLevel += 1;
-        PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+      
 
         winUI.SetActive(true);
         scoreScript.showScore();

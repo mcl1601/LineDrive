@@ -456,7 +456,7 @@ MonoBehaviour:
   star2val: 50
   star1val: 25
   stars: 0
-  starObj: {fileID: 1504133451505386, guid: 792323caf65c96e40ab0b693aa8c594a, type: 2}
+  starObj: {fileID: 1973261728230278, guid: 6d89d9a8ce2535543bf8c14592f1005c, type: 2}
 --- !u!1 &1074276486
 GameObject:
   m_ObjectHideFlags: 0
