@@ -150,6 +150,7 @@ public class GameUIController : MonoBehaviour {
                 gameObject.GetComponent<PlaceBoost>().RemoveBoosts = 1;
                 boost.interactable = true;
                 toolToggle.toggle = ToggleState.Boost;
+                boost.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
                 break;
         }
 

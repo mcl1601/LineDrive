@@ -11,6 +11,7 @@ public class PlaceBoost : MonoBehaviour {
 
     public int maxBoosts = 3; // amount of speed boosts allowed in this level
     private int numBoosts; // number of boosts currently in the scene
+    private Text boostText;
 
     EventSystem eSys;
     GraphicRaycaster caster;
@@ -35,6 +36,8 @@ public class PlaceBoost : MonoBehaviour {
 	void Start () {
         caster = canvas.GetComponent<GraphicRaycaster>();
         eSys = canvas.GetComponent<EventSystem>();
+        boostText = uiController.boost.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+        boostText.text = "" + RemainingBoosts;
     }
 	
 	// Update is called once per frame
@@ -56,6 +59,7 @@ public class PlaceBoost : MonoBehaviour {
 
             // Increment the boosts
             numBoosts++;
+            boostText.text = "" + RemainingBoosts;
         }
         if(Input.GetMouseButton(0))
         {
