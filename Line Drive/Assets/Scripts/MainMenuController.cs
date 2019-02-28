@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
-    public GameObject mainMenu, lvlSelect, loadingScreen, lvlGroup;
+    public GameObject mainMenu, lvlSelect, loadingScreen, lvlGroup, btnPre;
     public Image loadingBar;
+    public Transform parent;
 
     private int maxLevelUnlocked;
 
@@ -14,11 +15,24 @@ public class MainMenuController : MonoBehaviour {
 	void Start () {
         CheckForData();
 
-		for(int i = 0; i < lvlGroup.transform.childCount; i++)
+		/*for(int i = 0; i < lvlGroup.transform.childCount; i++)
         {
             GameObject btn = lvlGroup.transform.GetChild(i).gameObject;
             int l = i;
             Button b = btn.GetComponent<Button>();
+            if (i < maxLevelUnlocked)
+                b.interactable = true;
+            else
+                b.interactable = false;
+            b.onClick.AddListener(() => { LoadLevel(l + 1); });
+        }*/
+
+        for(int i = 0; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+        {
+            GameObject inst = Instantiate(btnPre, parent);
+            inst.GetComponentInChildren<Text>().text = (i + 1).ToString();
+            int l = i;
+            Button b = inst.GetComponent<Button>();
             if (i < maxLevelUnlocked)
                 b.interactable = true;
             else
