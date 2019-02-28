@@ -86,6 +86,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = line;
         HighlightSelected();
+        Debug.Log(toolToggle.toggle);
         //ChangeUndo(false);
     }
 
@@ -137,8 +138,6 @@ public class GameUIController : MonoBehaviour {
             return;
 
         GameObject last = placedObjects.Pop();
-        Debug.Log(last);
-        Debug.Log(last.tag);
 
         //check if its a line and if so, you need to return the amount of line juice corresponding to the removed line points
         switch (last.tag)
@@ -146,11 +145,12 @@ public class GameUIController : MonoBehaviour {
             case "line":
                 Camera.main.GetComponent<DrawLine>().lineJuice += last.GetComponent<EdgeCollider2D>().pointCount - 1;
                 Camera.main.GetComponent<DrawLine>().UpdateJuiceBar();
-                Debug.Log("triggered");
                 break;
             case "speed":
-                break;
-            case "bounce":
+                gameObject.GetComponent<PlaceBoost>().RemoveBoosts = 1;
+                boost.interactable = true;
+                toolToggle.toggle = ToggleState.Boost;
+                boost.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
                 break;
         }
 
