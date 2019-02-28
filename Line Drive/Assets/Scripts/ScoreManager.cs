@@ -8,7 +8,9 @@ public class ScoreManager : MonoBehaviour {
     public int star3val;
     public int star2val;
     public int star1val;
-    int lineJuice;
+
+    private int lineJuice;
+    private int extraBoosts;
     public int stars = 0;
     public GameObject starObj;
 	void Start () {
@@ -22,7 +24,7 @@ public class ScoreManager : MonoBehaviour {
     }
     public void showScore()
     {
-
+        extraBoosts = gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
         if (lineJuice >= star3val) stars = 3;
         else if (lineJuice >= star2val) stars = 2;
