@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class ScoreManager : MonoBehaviour {
     int lineJuice;
     public int stars = 0;
     public GameObject starObj;
+    int totalScore = 0;
 	void Start () {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
 	}
@@ -28,7 +30,8 @@ public class ScoreManager : MonoBehaviour {
         else if (lineJuice >= star2val) stars = 2;
         else if (lineJuice >= star1val) stars = 1;
         else stars = 0;
-
+        totalScore = lineJuice * 100;
+        GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = "Score: " + totalScore;
         StartCoroutine(SpawnStars());
        
     }
