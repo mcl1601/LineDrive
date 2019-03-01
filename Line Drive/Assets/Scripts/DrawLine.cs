@@ -41,6 +41,7 @@ public class DrawLine : MonoBehaviour {
         caster = canvas.GetComponent<GraphicRaycaster>();
         eSys = canvas.GetComponent<EventSystem>();
         juiceInitial = (float)lineJuice;
+        linePre.GetComponent<LineRenderer>().textureMode = LineTextureMode.Tile;
     }
 	
 	// Update is called once per frame
