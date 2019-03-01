@@ -127,11 +127,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4846744759827794, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.18
+      value: -6.7700005
       objectReference: {fileID: 0}
     - target: {fileID: 4846744759827794, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.26
+      value: -3.4199998
       objectReference: {fileID: 0}
     - target: {fileID: 4846744759827794, guid: 1bf91d1bb6595f040b3be2124789cd53, type: 2}
       propertyPath: m_LocalPosition.z
@@ -397,6 +397,7 @@ MonoBehaviour:
   speedBoost: {fileID: 1412293097597504, guid: ad9c2dce4492f8542b740bfdc6ae3ed3, type: 2}
   canvas: {fileID: 1132455440}
   uiController: {fileID: 943006646}
+  maxBoosts: 3
 --- !u!114 &943006644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,11 +576,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4218769078527056, guid: 2678bee73c0b16a4287a9d5109397d12, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.16
+      value: -6.75
       objectReference: {fileID: 0}
     - target: {fileID: 4218769078527056, guid: 2678bee73c0b16a4287a9d5109397d12, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.7900002
+      value: -2.95
       objectReference: {fileID: 0}
     - target: {fileID: 4218769078527056, guid: 2678bee73c0b16a4287a9d5109397d12, type: 2}
       propertyPath: m_LocalPosition.z
@@ -628,7 +629,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4554743491270388, guid: bf0f55637f7b73d42a98653ee060b38a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.04
+      value: 6.13
       objectReference: {fileID: 0}
     - target: {fileID: 4554743491270388, guid: bf0f55637f7b73d42a98653ee060b38a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -716,11 +717,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4558263385547632, guid: 866347bab1ff8054f80587711e5c27c5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.9439574
+      value: -0.9246609
       objectReference: {fileID: 0}
     - target: {fileID: 4558263385547632, guid: 866347bab1ff8054f80587711e5c27c5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.33006743
+      value: 0.38079172
       objectReference: {fileID: 0}
     - target: {fileID: 4558263385547632, guid: 866347bab1ff8054f80587711e5c27c5, type: 2}
       propertyPath: m_RootOrder
@@ -728,7 +729,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4558263385547632, guid: 866347bab1ff8054f80587711e5c27c5, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -141.45401
+      value: -135.235
       objectReference: {fileID: 0}
     - target: {fileID: 1745140546397500, guid: 866347bab1ff8054f80587711e5c27c5, type: 2}
       propertyPath: m_Name
