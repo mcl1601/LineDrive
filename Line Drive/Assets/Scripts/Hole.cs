@@ -83,12 +83,14 @@ public class Hole : MonoBehaviour {
                 // no kobe, reset text
                 Debug.Log("Line in Kobe zone, no kobe");
                 GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Hole in One!";
+                kobe = false;
             }
         }
         else
         {
             // no kobe, reset text
             Debug.Log("Hit Ledges, no Kobe");
+            kobe = false;
             GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Hole in One!";
         }
 

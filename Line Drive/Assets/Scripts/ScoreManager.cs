@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour {
@@ -35,7 +36,8 @@ public class ScoreManager : MonoBehaviour {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
 
         // calculate total score
-        totalScore = (lineJuice * 100) + (extraBoosts * 500);
+        bool kobe = GameObject.Find("BottomHole").GetComponent<Hole>().Kobe;
+        totalScore = (lineJuice * 100) + (extraBoosts * 500) + (kobe ? 2500 : 0);
 
         // how many stars is this score worth?
         if (totalScore >= star3val) stars = 3;
@@ -48,6 +50,13 @@ public class ScoreManager : MonoBehaviour {
         string key = "Hole" + holeNum + "Stars";
         if (PlayerPrefs.GetInt(key) < stars)
             PlayerPrefs.SetInt(key, stars);
+
+        // add the stars to the score bar
+        float star2Pos = 1f - ((float)star2val / star3val);
+        float star1Pos = 1f - ((float)star1val / star3val);
+        GameObject.Find("2Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star2Pos, 0f);
+        GameObject.Find("1Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star1Pos, 0f);
+        GameObject.Find("StarProgressFG").GetComponent<Image>().fillAmount = totalScore / (float)star3val;
 
         // display stars and score
         GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = "Score: 0";
