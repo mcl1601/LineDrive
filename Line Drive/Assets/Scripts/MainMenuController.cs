@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
-    public GameObject mainMenu, lvlSelect, loadingScreen, lvlGroup, btnPre;
+    public GameObject mainMenu, lvlSelect, ballCustom, loadingScreen, lvlGroup, btnPre;
     public Image loadingBar;
     public Transform parent;
 
@@ -66,10 +66,21 @@ public class MainMenuController : MonoBehaviour {
         lvlSelect.SetActive(true);
     }
 
+    public void SwitchToBallCustomization()
+    {
+        mainMenu.SetActive(false);
+        ballCustom.SetActive(true);
+    }
+
     public void SwitchToMainMenu()
     {
         mainMenu.SetActive(true);
         lvlSelect.SetActive(false);
+    }
+    public void SwitchToMainMenuFromCustom()
+    {
+        mainMenu.SetActive(true);
+        ballCustom.SetActive(false);
     }
 
     public void NewGame()
