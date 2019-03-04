@@ -42,6 +42,19 @@ public class DrawLine : MonoBehaviour {
         eSys = canvas.GetComponent<EventSystem>();
         juiceInitial = (float)lineJuice;
         linePre.GetComponent<LineRenderer>().textureMode = LineTextureMode.Tile;
+
+        SetAspect();
+        if (GameObject.Find("BG") != null)
+            GameObject.Find("BG").GetComponent<ResizeBackground>().Resize();
+    }
+
+    void SetAspect()
+    {
+        float prefferedAspect = 16f / 9f;
+        float actualAspect = Camera.main.aspect;
+        Debug.Log(actualAspect);
+        float size = (prefferedAspect / actualAspect) * 5f;
+        Camera.main.orthographicSize = size;
     }
 	
 	// Update is called once per frame

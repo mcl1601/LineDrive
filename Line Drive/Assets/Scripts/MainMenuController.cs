@@ -14,7 +14,7 @@ public class MainMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         CheckForData();
-
+        DestroyMusic();
 		/*for(int i = 0; i < lvlGroup.transform.childCount; i++)
         {
             GameObject btn = lvlGroup.transform.GetChild(i).gameObject;
@@ -96,6 +96,14 @@ public class MainMenuController : MonoBehaviour {
         LoadLevel(PlayerPrefs.GetInt("maxLevel"));
     }
 
+    private void DestroyMusic()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("music");
+        foreach(GameObject thing in objs)
+        {
+            Destroy(thing);
+        }
+    }
     public void LoadLevel(int level)
     {
         IEnumerator co = LoadScene(level);
