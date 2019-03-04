@@ -22,7 +22,7 @@ public class GameUIController : MonoBehaviour {
     private bool uiHidden = false;
     private float topY;
     private float bottomY;
-
+    private GameObject paperBG;
     private Vector3 savedVelocity;
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,7 @@ public class GameUIController : MonoBehaviour {
 
         // Init stack
         placedObjects = new Stack<GameObject>();
+        paperBG = GameObject.Find("PaperBG");
 	}
 
     public void QuitToMain()
@@ -82,6 +83,8 @@ public class GameUIController : MonoBehaviour {
 	
 	public void EnableDrawMode()
     {
+        if (toolToggle.toggle == ToggleState.Shoot)
+            StartCoroutine(AnimateBackgroundAppear());
         toolToggle.toggle = ToggleState.Line;
         ResetSelectedButton();
         selected = line;
@@ -92,6 +95,8 @@ public class GameUIController : MonoBehaviour {
 
     public void EnableBoostMode()
     {
+        if(toolToggle.toggle == ToggleState.Shoot)
+            StartCoroutine(AnimateBackgroundAppear());
         toolToggle.toggle = ToggleState.Boost;
         ResetSelectedButton();
         selected = boost;
@@ -108,6 +113,7 @@ public class GameUIController : MonoBehaviour {
         //HighlightSelected();
         SlideUIUp();
         //ChangeUndo(true);
+        StartCoroutine(AnimateBackgroundDisappear());
     }
 
     public void ChangeUndo(bool reset)
@@ -182,6 +188,36 @@ public class GameUIController : MonoBehaviour {
         if(lastroutine != null) StopCoroutine(lastroutine);
         uiHidden = true;
         lastroutine = StartCoroutine(SlideUp());
+    }
+
+    IEnumerator AnimateBackgroundAppear()
+    {
+        float timer = 0f;
+        float percent = 0f;
+        Vector3 init = new Vector3(0f, Camera.main.orthographicSize * 2f, 0f);
+        while(percent < 1f)
+        {
+            percent = timer / 0.25f;
+            paperBG.transform.position = Vector3.Lerp(-init, Vector3.zero, percent);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        paperBG.transform.position = Vector3.zero;
+    }
+
+    IEnumerator AnimateBackgroundDisappear()
+    {
+        float timer = 0f;
+        float percent = 0f;
+        Vector3 init = new Vector3(0f, Camera.main.orthographicSize * 2f, 0f);
+        while (percent < 1f)
+        {
+            percent = timer / 0.25f;
+            paperBG.transform.position = Vector3.Lerp(Vector3.zero, -init, percent);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        paperBG.transform.position = init;
     }
 
     IEnumerator SlideUp()
