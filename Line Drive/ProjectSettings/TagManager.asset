@@ -10,6 +10,7 @@ TagManager:
   - speed
   - KobeTrigger
   - NoDraw
+  - music
   layers:
   - Default
   - TransparentFX
