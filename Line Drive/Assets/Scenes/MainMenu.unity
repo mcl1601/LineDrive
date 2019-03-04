@@ -1520,7 +1520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000021041784}
+  m_AnchoredPosition: {x: 0, y: -0.000020480275}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &681636134
@@ -1816,7 +1816,7 @@ RectTransform:
   m_Father: {fileID: 375882111}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.00000011920929}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -2463,8 +2463,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 999297429}
   m_HandleRect: {fileID: 999297428}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2771,6 +2771,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 164920376}
   lvlGroup: {fileID: 681636132}
   btnPre: {fileID: 1449751389234550, guid: 598a79befdfc9f84f8b63e30cbeb3482, type: 2}
+  starPre: {fileID: 1186960192249598, guid: 0e3194e0e0f8c3848bf82d2cbb8bb8ba, type: 2}
   loadingBar: {fileID: 1249375752}
   parent: {fileID: 681636133}
 --- !u!1 &1948370441

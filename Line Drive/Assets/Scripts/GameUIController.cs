@@ -106,10 +106,12 @@ public class GameUIController : MonoBehaviour {
 
     public void EnableShootMode()
     {
+        if (toolToggle.toggle != ToggleState.Shoot)
+            StartCoroutine(AnimateBackgroundDisappear());
         toolToggle.toggle = ToggleState.Shoot;
         ResetSelectedButton();
         selected = play;
-        selected.GetComponent<Image>().color = Color.green;
+        selected.transform.GetChild(0).GetComponent<Image>().color = Color.green;
         //HighlightSelected();
         SlideUIUp();
         //ChangeUndo(true);
@@ -126,7 +128,7 @@ public class GameUIController : MonoBehaviour {
     public void ResetSelectedButton()
     {
         if(selected.gameObject.name == "PlayBtn")
-            selected.GetComponent<Image>().color = Color.white;
+            selected.transform.GetChild(0).GetComponent<Image>().color = Color.white;
         else
             selected.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f);
         /*ColorBlock c = selected.colors;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour {
@@ -29,13 +30,26 @@ public class ScoreManager : MonoBehaviour {
     }
     public void showScore()
     {
+        // get references
         extraBoosts = gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
-        if (lineJuice >= star3val) stars = 3;
-        else if (lineJuice >= star2val) stars = 2;
-        else if (lineJuice >= star1val) stars = 1;
+
+        // calculate total score
+        totalScore = (lineJuice * 100) + (extraBoosts * 500);
+
+        // how many stars is this score worth?
+        if (totalScore >= star3val) stars = 3;
+        else if (totalScore >= star2val) stars = 2;
+        else if (totalScore >= star1val) stars = 1;
         else stars = 0;
-        totalScore = lineJuice * 100;
+
+        // save the star value
+        int holeNum = SceneManager.GetActiveScene().buildIndex;
+        string key = "Hole" + holeNum + "Stars";
+        if (PlayerPrefs.GetInt(key) < stars)
+            PlayerPrefs.SetInt(key, stars);
+
+        // display stars and score
         GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = "Score: 0";
         StartCoroutine(SpawnStars());
        

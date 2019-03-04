@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
-    public GameObject mainMenu, lvlSelect, ballCustom, loadingScreen, lvlGroup, btnPre;
+    public GameObject mainMenu, lvlSelect, ballCustom, loadingScreen, lvlGroup, btnPre, starPre;
     public Image loadingBar;
     public Transform parent;
 
@@ -34,7 +34,14 @@ public class MainMenuController : MonoBehaviour {
             int l = i;
             Button b = inst.GetComponent<Button>();
             if (i < maxLevelUnlocked)
+            {
                 b.interactable = true;
+                int stars = PlayerPrefs.GetInt("Hole" + (i + 1) + "Stars", 0);
+                for(int j = 0; j < stars; j++)
+                {
+                    Instantiate(starPre, b.transform.GetChild(1));
+                }
+            }
             else
                 b.interactable = false;
             b.onClick.AddListener(() => { LoadLevel(l + 1); });
@@ -87,6 +94,11 @@ public class MainMenuController : MonoBehaviour {
     {
         PlayerPrefs.SetInt("maxLevel", 1);
         PlayerPrefs.SetInt("hasViewedInstructions", 0);
+        for(int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+        {
+            string key = "Hole" + i + "Stars";
+            PlayerPrefs.SetInt(key, 0);
+        }
         maxLevelUnlocked = 1;
         LoadLevel(1);
     }
