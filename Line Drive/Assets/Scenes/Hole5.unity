@@ -659,9 +659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416275a5d124f494698f2f6aa8b891fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star3val: 75
-  star2val: 50
-  star1val: 25
+  star3val: 4000
+  star2val: 2750
+  star1val: 1000
   stars: 0
   starObj: {fileID: 1973261728230278, guid: 6d89d9a8ce2535543bf8c14592f1005c, type: 2}
 --- !u!1001 &1018447000
@@ -803,7 +803,7 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1132455440}
   uiController: {fileID: 943006646}
-  lineJuice: 100
+  lineJuice: 40
   juiceBar: {fileID: 1981754495}
 --- !u!1 &1124316042 stripped
 GameObject:

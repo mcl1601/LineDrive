@@ -21,7 +21,12 @@ public class ScoreManager : MonoBehaviour {
     int totalBoost = 0;
 
     bool kobe = false;
-	void Start () {
+    float star2Pos;
+    float star1Pos;
+    bool spawn1star = false;
+    bool spawn2star = false;
+    bool spawn3star = false;
+    void Start () {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
         totalBoost = gameObject.GetComponent<PlaceBoost>().maxBoosts;
 	}
@@ -54,8 +59,8 @@ public class ScoreManager : MonoBehaviour {
             PlayerPrefs.SetInt(key, stars);
 
         // add the stars to the score bar
-        float star2Pos = 1f - ((float)star2val / star3val);
-        float star1Pos = 1f - ((float)star1val / star3val);
+        star2Pos = 1f - ((float)star2val / star3val);
+        star1Pos = 1f - ((float)star1val / star3val);
         GameObject.Find("2Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star2Pos, 0f);
         GameObject.Find("1Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star1Pos, 0f);
         //GameObject.Find("StarProgressFG").GetComponent<Image>().fillAmount = totalScore / (float)star3val;
@@ -116,6 +121,25 @@ public class ScoreManager : MonoBehaviour {
         s.text = "";
     }
 
+    void CheckForStar(float percent, Transform parent)
+    {
+        if(percent >= 1f - star1Pos && !spawn1star)
+        {
+            Instantiate(starObj, parent);
+            spawn1star = true;
+        }
+        if(percent >= 1f - star2Pos && !spawn2star)
+        {
+            Instantiate(starObj, parent);
+            spawn2star = true;
+        }
+        if(percent == 1 && !spawn3star)
+        {
+            Instantiate(starObj, parent);
+            spawn3star = true;
+        }
+    }
+
     IEnumerator PresentScore()
     {
         TextMeshProUGUI s = GameObject.Find("ScorePerComponent").GetComponent<TextMeshProUGUI>();
@@ -137,6 +161,7 @@ public class ScoreManager : MonoBehaviour {
             percent = timer / 0.75f;
             slider.fillAmount = Mathf.Lerp(0f, fillPercent, percent);
             timer += Time.deltaTime;
+            CheckForStar(slider.fillAmount, starParent);
             yield return null;
         }
         // wait a bit
@@ -150,13 +175,13 @@ public class ScoreManager : MonoBehaviour {
         // get new current score
         float init = slider.fillAmount;
         currentScore += (extraBoosts * 500);
-        fillPercent = currentScore / star3val;
-        Debug.Log("Init: " + init + "   fillPercent: " + fillPercent);
+        fillPercent = currentScore / (float)star3val;
         while (percent < 1f)
         {
             percent = timer / 0.75f;
             slider.fillAmount = Mathf.Lerp(init, fillPercent, percent);
             timer += Time.deltaTime;
+            CheckForStar(slider.fillAmount, starParent);
             yield return null;
         }
 
@@ -170,12 +195,13 @@ public class ScoreManager : MonoBehaviour {
             // get new current score
             init = slider.fillAmount;
             currentScore += 2500;
-            fillPercent = currentScore / star3val;
+            fillPercent = currentScore / (float)star3val;
             while (percent < 1f)
             {
                 percent = timer / 0.75f;
                 slider.fillAmount = Mathf.Lerp(init, fillPercent, percent);
                 timer += Time.deltaTime;
+                CheckForStar(slider.fillAmount, starParent);
                 yield return null;
             }
         }

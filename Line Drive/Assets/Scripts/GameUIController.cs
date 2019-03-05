@@ -89,7 +89,6 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = line;
         HighlightSelected();
-        Debug.Log(toolToggle.toggle);
         //ChangeUndo(false);
     }
 
@@ -115,7 +114,6 @@ public class GameUIController : MonoBehaviour {
         //HighlightSelected();
         SlideUIUp();
         //ChangeUndo(true);
-        StartCoroutine(AnimateBackgroundDisappear());
     }
 
     public void ChangeUndo(bool reset)

@@ -62,10 +62,8 @@ public class Hole : MonoBehaviour {
             currentLevel += 1;
             PlayerPrefs.SetInt("CurrentLevel", currentLevel);
         }
-      
 
         winUI.SetActive(true);
-        scoreScript.showScore();
         // disable the collider
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
@@ -94,6 +92,8 @@ public class Hole : MonoBehaviour {
             GameObject.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Hole in One!";
         }
 
+        // show the score
+        scoreScript.showScore();
     }
 
     public void LoadNextLevel()
