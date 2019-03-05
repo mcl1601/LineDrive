@@ -62,7 +62,7 @@ public class Hole : MonoBehaviour {
             currentLevel += 1;
             PlayerPrefs.SetInt("CurrentLevel", currentLevel);
         }
-
+        GetComponent<AudioSource>().Play();
         winUI.SetActive(true);
         // disable the collider
         gameObject.GetComponent<BoxCollider2D>().enabled = false;

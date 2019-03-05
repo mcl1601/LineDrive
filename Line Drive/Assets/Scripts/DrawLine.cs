@@ -180,6 +180,7 @@ public class DrawLine : MonoBehaviour {
             {
                 if (CheckMouseInput()) return;
                 Destroy(powerLine);
+                GetComponent<AudioSource>().Play();
                 mUp = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
