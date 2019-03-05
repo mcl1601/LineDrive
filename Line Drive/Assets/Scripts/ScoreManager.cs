@@ -19,6 +19,8 @@ public class ScoreManager : MonoBehaviour {
     int totalScore = 0;
     
     int totalBoost = 0;
+
+    bool kobe = false;
 	void Start () {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
         totalBoost = gameObject.GetComponent<PlaceBoost>().maxBoosts;
@@ -36,7 +38,7 @@ public class ScoreManager : MonoBehaviour {
         lineJuice = GameObject.Find("Main Camera").GetComponent<DrawLine>().lineJuice;
 
         // calculate total score
-        bool kobe = GameObject.Find("BottomHole").GetComponent<Hole>().Kobe;
+        kobe = GameObject.Find("BottomHole").GetComponent<Hole>().Kobe;
         totalScore = (lineJuice * 100) + (extraBoosts * 500) + (kobe ? 2500 : 0);
 
         // how many stars is this score worth?
@@ -56,11 +58,11 @@ public class ScoreManager : MonoBehaviour {
         float star1Pos = 1f - ((float)star1val / star3val);
         GameObject.Find("2Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star2Pos, 0f);
         GameObject.Find("1Star").GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f * star1Pos, 0f);
-        GameObject.Find("StarProgressFG").GetComponent<Image>().fillAmount = totalScore / (float)star3val;
+        //GameObject.Find("StarProgressFG").GetComponent<Image>().fillAmount = totalScore / (float)star3val;
 
         // display stars and score
-        GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = "Score: 0";
-        StartCoroutine(SpawnStars());
+        //GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = "Score: 0";
+        StartCoroutine(PresentScore());
        
     }
     IEnumerator SpawnStars()
@@ -112,5 +114,70 @@ public class ScoreManager : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         s.text = "";
+    }
+
+    IEnumerator PresentScore()
+    {
+        TextMeshProUGUI s = GameObject.Find("ScorePerComponent").GetComponent<TextMeshProUGUI>();
+        Transform starParent = GameObject.Find("StarGroup").transform;
+        Image slider = GameObject.Find("StarProgressFG").GetComponent<Image>();
+        float timer = 0f;
+        float percent = 0f;
+        float fillPercent = (lineJuice * 100f) / star3val;
+        int currentScore = lineJuice * 100;
+
+        // wait a bit
+        yield return new WaitForSeconds(0.5f);
+
+        // add what they got score for
+        // Line juice remaining
+        s.text = "Line Meter Remaining +" + lineJuice * 100;
+        while(percent < 1f)
+        {
+            percent = timer / 0.75f;
+            slider.fillAmount = Mathf.Lerp(0f, fillPercent, percent);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        // wait a bit
+        yield return new WaitForSeconds(0.5f);
+
+        // boosts leftover
+        s.text += "\nBoosts Leftover (" + extraBoosts + " / " + totalBoost + ") +" + extraBoosts * 500;
+        // reset vars
+        timer = 0f;
+        percent = 0f;
+        // get new current score
+        float init = slider.fillAmount;
+        currentScore += (extraBoosts * 500);
+        fillPercent = currentScore / star3val;
+        Debug.Log("Init: " + init + "   fillPercent: " + fillPercent);
+        while (percent < 1f)
+        {
+            percent = timer / 0.75f;
+            slider.fillAmount = Mathf.Lerp(init, fillPercent, percent);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        if (kobe)
+        {
+            yield return new WaitForSeconds(0.5f);
+            s.text += "\nKOBE! +" + 2500;
+            // reset vars
+            timer = 0f;
+            percent = 0f;
+            // get new current score
+            init = slider.fillAmount;
+            currentScore += 2500;
+            fillPercent = currentScore / star3val;
+            while (percent < 1f)
+            {
+                percent = timer / 0.75f;
+                slider.fillAmount = Mathf.Lerp(init, fillPercent, percent);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
     }
 }
