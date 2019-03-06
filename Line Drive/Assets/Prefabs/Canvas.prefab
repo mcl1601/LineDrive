@@ -5793,7 +5793,7 @@ Canvas:
   m_GameObject: {fileID: 1383668399906848}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5803,7 +5803,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &224011162301088548
 RectTransform:
@@ -6030,7 +6030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 97.87}
+  m_AnchoredPosition: {x: 0, y: 97.869995}
   m_SizeDelta: {x: -100, y: 33.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224174805244056734
@@ -6147,7 +6147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -82.00003, y: 0}
+  m_AnchoredPosition: {x: -82, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224213417599800236
@@ -6165,7 +6165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 119.27}
+  m_AnchoredPosition: {x: 0, y: 119.26999}
   m_SizeDelta: {x: -100, y: 69.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224215729137976214
@@ -6494,7 +6494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.666668, y: -25}
+  m_AnchoredPosition: {x: 41.666656, y: -25}
   m_SizeDelta: {x: 83.333336, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224414351662180606
@@ -6535,7 +6535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -27.50003}
+  m_AnchoredPosition: {x: 0, y: -27.5}
   m_SizeDelta: {x: -400, y: -95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224461213010032010
