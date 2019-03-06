@@ -24,6 +24,7 @@ public class GameUIController : MonoBehaviour {
     private float bottomY;
     private GameObject paperBG;
     private Vector3 savedVelocity;
+    GameObject undo;
 	// Use this for initialization
 	void Start () {
         selected = line;
@@ -33,6 +34,7 @@ public class GameUIController : MonoBehaviour {
         // Init stack
         placedObjects = new Stack<GameObject>();
         paperBG = GameObject.Find("PaperBG");
+        undo = GameObject.Find("Undo");
 	}
 
     public void QuitToMain()
@@ -84,22 +86,30 @@ public class GameUIController : MonoBehaviour {
 	public void EnableDrawMode()
     {
         if (toolToggle.toggle == ToggleState.Shoot)
+        {
             StartCoroutine(AnimateBackgroundAppear());
+            ResetBall();
+        }
         toolToggle.toggle = ToggleState.Line;
         ResetSelectedButton();
         selected = line;
         HighlightSelected();
+        undo.SetActive(true);
         //ChangeUndo(false);
     }
 
     public void EnableBoostMode()
     {
         if(toolToggle.toggle == ToggleState.Shoot)
+        {
             StartCoroutine(AnimateBackgroundAppear());
+            ResetBall();
+        }
         toolToggle.toggle = ToggleState.Boost;
         ResetSelectedButton();
         selected = boost;
         HighlightSelected();
+        undo.SetActive(true);
         //ChangeUndo(false);
     }
 
@@ -111,6 +121,7 @@ public class GameUIController : MonoBehaviour {
         ResetSelectedButton();
         selected = play;
         selected.transform.GetChild(0).GetComponent<Image>().color = Color.green;
+        undo.SetActive(false);
         //HighlightSelected();
         SlideUIUp();
         //ChangeUndo(true);
