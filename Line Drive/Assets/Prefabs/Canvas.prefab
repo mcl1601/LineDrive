@@ -2740,8 +2740,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281348144
+  m_fontColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -2898,11 +2898,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'When you''re ready to hit the ball, click this button
+  m_text: 'When you''re ready to hit the ball, click this button to enter play mode
 
 
-    To hit the ball, tap and drag back to increase the power, and release to apply
-    the force'
+    To hit the ball, drag back anywhere on screen to increase the power, and release
+    to hit the ball'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2947,7 +2947,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 53
+  m_firstOverflowCharacterIndex: 72
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2970,10 +2970,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -106.36037, w: -9.636818}
   m_textInfo:
     textComponent: {fileID: 114391999013708566}
-    characterCount: 142
+    characterCount: 169
     spriteCount: 0
-    spaceCount: 28
-    wordCount: 28
+    spaceCount: 33
+    wordCount: 33
     linkCount: 0
     lineCount: 6
     pageCount: 1
@@ -5218,7 +5218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.83137256}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5793,7 +5793,7 @@ Canvas:
   m_GameObject: {fileID: 1383668399906848}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5803,7 +5803,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &224011162301088548
 RectTransform:
@@ -6030,7 +6030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 97.87}
+  m_AnchoredPosition: {x: 0, y: 97.869995}
   m_SizeDelta: {x: -100, y: 33.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224174805244056734
@@ -6147,7 +6147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -82.00003, y: 0}
+  m_AnchoredPosition: {x: -82, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224213417599800236
@@ -6165,7 +6165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 119.27}
+  m_AnchoredPosition: {x: 0, y: 119.26999}
   m_SizeDelta: {x: -100, y: 69.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224215729137976214
@@ -6535,7 +6535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -27.50003}
+  m_AnchoredPosition: {x: 0, y: -27.5}
   m_SizeDelta: {x: -400, y: -95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224461213010032010

@@ -20,6 +20,7 @@ public class SpeedBoost : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name != "Ball") return;
+        GetComponent<AudioSource>().Play();
         ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.right.x * boostAmt, transform.right.y * boostAmt));
     }
 }
