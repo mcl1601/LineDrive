@@ -14,10 +14,12 @@ public class BallCustomization : MonoBehaviour {
 
     public Text totalStarText;
 
+    public int cost = 1; // amount it cost to buy this customization
+
     private BuyState state = BuyState.Equipped;
 
     private GameObject unlock;
-    private GameObject cost;
+    private GameObject costTxt;
     private GameObject star;
 
     private GameObject equip;
@@ -31,7 +33,8 @@ public class BallCustomization : MonoBehaviour {
     {
         // Set up all references to child UI parts
         unlock = gameObject.transform.GetChild(0).gameObject;
-        cost = gameObject.transform.GetChild(2).gameObject;
+        costTxt = gameObject.transform.GetChild(2).gameObject;
+        costTxt.GetComponent<Text>().text = "" + cost;
         star = gameObject.transform.GetChild(3).gameObject;
         equip = gameObject.transform.GetChild(4).gameObject;
         ball = gameObject.transform.GetChild(1).gameObject.GetComponent<Image>();
@@ -41,11 +44,16 @@ public class BallCustomization : MonoBehaviour {
         {
             PlayerPrefs.SetInt("WhiteBuyState", 2);
             unlock.SetActive(false);
-            cost.SetActive(false);
+            costTxt.SetActive(false);
             star.SetActive(false);
 
             equip.SetActive(true);
             equip.GetComponent<Text>().text = "Equipped";
+
+            Outline line = gameObject.AddComponent<Outline>();
+            line.effectDistance = new Vector2(3, -3);
+            line.effectColor = Color.blue;
+            line.useGraphicAlpha = false;
         }
     }
 
@@ -85,6 +93,11 @@ public class BallCustomization : MonoBehaviour {
                     // Set the customization to be the new selection
                     currentCustomization = gameObject.name;
                     PlayerPrefs.SetString("CurrentBall", currentCustomization);
+
+                    Outline line = gameObject.AddComponent<Outline>();
+                    line.effectDistance = new Vector2(3, -3);
+                    line.effectColor = Color.blue;
+                    line.useGraphicAlpha = false;
                 }
                 
                 break;
@@ -98,6 +111,8 @@ public class BallCustomization : MonoBehaviour {
     {
         state = BuyState.Unlocked;
         equip.GetComponent<Text>().text = "Equip";
+
+        Destroy(gameObject.GetComponent<Outline>());
     }
 
 

@@ -57,11 +57,12 @@ public class ScoreManager : MonoBehaviour {
         string key = "Hole" + holeNum + "Stars";
         if (PlayerPrefs.GetInt(key) < stars)
         {
-            PlayerPrefs.SetInt(key, stars);
-
             // Updated total Stars
             int tempTotal = PlayerPrefs.GetInt("TotalStars", 0);
             PlayerPrefs.SetInt("TotalStars", tempTotal + (stars - PlayerPrefs.GetInt(key)));
+
+            // Set new highscore of stars on this level
+            PlayerPrefs.SetInt(key, stars);
         }
 
         // add the stars to the score bar
