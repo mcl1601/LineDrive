@@ -56,7 +56,13 @@ public class ScoreManager : MonoBehaviour {
         int holeNum = SceneManager.GetActiveScene().buildIndex;
         string key = "Hole" + holeNum + "Stars";
         if (PlayerPrefs.GetInt(key) < stars)
+        {
             PlayerPrefs.SetInt(key, stars);
+
+            // Updated total Stars
+            int tempTotal = PlayerPrefs.GetInt("TotalStars", 0);
+            PlayerPrefs.SetInt("TotalStars", tempTotal + (stars - PlayerPrefs.GetInt(key)));
+        }
 
         // add the stars to the score bar
         star2Pos = 1f - ((float)star2val / star3val);
