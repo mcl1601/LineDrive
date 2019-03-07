@@ -14,14 +14,18 @@ public class BallCustomization : MonoBehaviour {
 
     public Text totalStarText;
 
+    private GameObject confirmWin;
+
     public int cost = 1; // amount it cost to buy this customization
 
-    private BuyState state = BuyState.Equipped;
+    private BuyState state;
 
+    // UI pieces to turn off once unlocked/purchased
     private GameObject unlock;
     private GameObject costTxt;
     private GameObject star;
 
+    // UI piece to turn on once unlocked/purchased
     private GameObject equip;
 
     private Image ball;
@@ -31,6 +35,9 @@ public class BallCustomization : MonoBehaviour {
 
     private void Awake()
     {
+        // Set up ref to the confirmation window
+        confirmWin = transform.parent.parent.GetChild(4).gameObject;
+
         // Set up all references to child UI parts
         unlock = gameObject.transform.GetChild(0).gameObject;
         costTxt = gameObject.transform.GetChild(2).gameObject;
@@ -38,23 +45,6 @@ public class BallCustomization : MonoBehaviour {
         star = gameObject.transform.GetChild(3).gameObject;
         equip = gameObject.transform.GetChild(4).gameObject;
         ball = gameObject.transform.GetChild(1).gameObject.GetComponent<Image>();
-
-        // Set White to be default if first time
-        if (name == "White" && PlayerPrefs.GetString("CurrentBall") == "")
-        {
-            PlayerPrefs.SetInt("WhiteBuyState", 2);
-            unlock.SetActive(false);
-            costTxt.SetActive(false);
-            star.SetActive(false);
-
-            equip.SetActive(true);
-            equip.GetComponent<Text>().text = "Equipped";
-
-            Outline line = gameObject.AddComponent<Outline>();
-            line.effectDistance = new Vector2(3, -3);
-            line.effectColor = Color.blue;
-            line.useGraphicAlpha = false;
-        }
     }
 
     // Use this for initialization
@@ -64,6 +54,18 @@ public class BallCustomization : MonoBehaviour {
         currentCustomization = PlayerPrefs.GetString("CurrentBall", "White");
         string key = gameObject.name + "BuyState";
         state = (BuyState)PlayerPrefs.GetInt(key, 0);
+
+        if (name == "White" && currentCustomization != "White")
+        {
+            state = BuyState.Unlocked;
+            Unlock();
+        }
+
+        if (state == BuyState.Equipped)
+        {
+            Unlock();
+            Equip();
+        }
 
         totalStarText.text = "x " + totalStars;
     }
@@ -75,7 +77,8 @@ public class BallCustomization : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        currentCustomization = PlayerPrefs.GetString("CurrentBall", "White");
+        currentCustomization = PlayerPrefs.GetString("CurrentBall");
+        totalStars = PlayerPrefs.GetInt("TotalStars");
 
         switch (state)
         {
@@ -91,22 +94,56 @@ public class BallCustomization : MonoBehaviour {
                     GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
 
                     // Set the customization to be the new selection
-                    currentCustomization = gameObject.name;
-                    PlayerPrefs.SetString("CurrentBall", currentCustomization);
-
-                    Outline line = gameObject.AddComponent<Outline>();
-                    line.effectDistance = new Vector2(3, -3);
-                    line.effectColor = Color.blue;
-                    line.useGraphicAlpha = false;
+                    Equip();
                 }
                 
                 break;
             case BuyState.Locked:
-                Debug.Log("buying dis");
+                {
+                    Debug.Log("buying dis");
+                    confirmWin.SetActive(true);
+                    confirmWin.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = " = " + cost + " of ";
+                    confirmWin.transform.GetChild(3).GetComponent<Text>().text = "Unlock for " + cost + " Stars?";
+                    confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
+                    confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(Purchase);
+                    if (cost > totalStars)
+                    {
+                        confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = false;
+                    }
+                    else
+                    {
+                        confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = true;
+                    }
+                }
                 break;
         }
     }
 
+    /// <summary>
+    /// Equips this ball customization
+    /// </summary>
+    private void Equip()
+    {
+        equip.GetComponent<Text>().text = "Equipped";
+
+        Outline line = gameObject.AddComponent<Outline>();
+        line.effectDistance = new Vector2(3, -3);
+        line.effectColor = Color.blue;
+        line.useGraphicAlpha = false;
+
+        PlayerPrefs.SetFloat("R", ball.color.r);
+        PlayerPrefs.SetFloat("G", ball.color.g);
+        PlayerPrefs.SetFloat("B", ball.color.b);
+
+        // Set the customization to be the new selection
+        currentCustomization = gameObject.name;
+        PlayerPrefs.SetString("CurrentBall", currentCustomization);
+    }
+
+    /// <summary>
+    /// Unequips this ball customization
+    /// Used to make sure only one is equipped at a time
+    /// </summary>
     public void UnEquip()
     {
         state = BuyState.Unlocked;
@@ -115,5 +152,37 @@ public class BallCustomization : MonoBehaviour {
         Destroy(gameObject.GetComponent<Outline>());
     }
 
+    /// <summary>
+    /// Unlock the ball customization by removing star cost count and unlock ui text
+    /// SHow equip instead
+    /// </summary>
+    private void Unlock()
+    {
+        unlock.SetActive(false);
+        costTxt.SetActive(false);
+        star.SetActive(false);
 
+        equip.SetActive(true);
+    }
+
+    public void Purchase()
+    {
+        Unlock();
+
+        // Unselect the currently selected one
+        GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
+
+        Equip();
+        
+        PlayerPrefs.SetInt("TotalStars", totalStars - cost);
+        totalStars -= cost;
+        totalStarText.text = "x " + totalStars;
+        confirmWin.SetActive(false);
+
+        state = BuyState.Equipped;
+        string key = gameObject.name + "BuyState";
+        PlayerPrefs.SetInt(key, (int)state);
+
+        Debug.Log(PlayerPrefs.GetString("CurrentBall"));
+    }
 }

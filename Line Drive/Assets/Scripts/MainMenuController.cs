@@ -99,6 +99,18 @@ public class MainMenuController : MonoBehaviour {
             string key = "Hole" + i + "Stars";
             PlayerPrefs.SetInt(key, 0);
         }
+        // Reset all customization
+        for(int j = 1; j < ballCustom.transform.GetChild(2).childCount; j++)
+        {
+            string key = ballCustom.transform.GetChild(2).GetChild(j).name + "BuyState";
+            PlayerPrefs.SetInt(key, 0);
+        }
+        // Reset ball customization to white
+        PlayerPrefs.SetString("CurrentBall", "White");
+        PlayerPrefs.SetFloat("R", 1);
+        PlayerPrefs.SetFloat("G", 1);
+        PlayerPrefs.SetFloat("B", 1);
+
         maxLevelUnlocked = 1;
         LoadLevel(1);
     }

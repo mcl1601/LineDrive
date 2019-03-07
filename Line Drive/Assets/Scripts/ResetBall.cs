@@ -11,6 +11,9 @@ public class ResetBall : MonoBehaviour {
         startPos = this.transform.position;
 
         botY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).y;
+
+        // Setting the ball's custom attributes
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(PlayerPrefs.GetFloat("R", 1), PlayerPrefs.GetFloat("G", 1), PlayerPrefs.GetFloat("B", 1));
     }
 	
 	// Update is called once per frame
