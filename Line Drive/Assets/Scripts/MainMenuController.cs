@@ -94,7 +94,10 @@ public class MainMenuController : MonoBehaviour {
     {
         PlayerPrefs.SetInt("maxLevel", 1);
         PlayerPrefs.SetInt("hasViewedInstructions", 0);
-        for(int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+        PlayerPrefs.SetInt("hasViewedBounceInstructions", 0);
+        PlayerPrefs.SetInt("hasViewedNoDrawInstructions", 0);
+        PlayerPrefs.SetInt("TotalStars", 0);
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
         {
             string key = "Hole" + i + "Stars";
             PlayerPrefs.SetInt(key, 0);

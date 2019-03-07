@@ -293,7 +293,7 @@ Prefab:
     - target: {fileID: 224407923426128900, guid: d4fa69ce17094d244ac1adaaf140fa2d,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 41.666656
+      value: 41.666626
       objectReference: {fileID: 0}
     - target: {fileID: 114434560852891694, guid: d4fa69ce17094d244ac1adaaf140fa2d,
         type: 2}
@@ -449,6 +449,16 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224124080953654712, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 103.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224311779437435694, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 103.79999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4fa69ce17094d244ac1adaaf140fa2d, type: 2}
   m_IsPrefabAsset: 0
@@ -540,11 +550,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f41acb900a90404e8e6560e83eef358, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &620152735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1781799934452564, guid: d4fa69ce17094d244ac1adaaf140fa2d,
-    type: 2}
-  m_PrefabInternal: {fileID: 113469758}
 --- !u!1001 &661516673
 Prefab:
   m_ObjectHideFlags: 0
@@ -854,7 +859,6 @@ GameObject:
   - component: {fileID: 943006644}
   - component: {fileID: 943006643}
   - component: {fileID: 943006646}
-  - component: {fileID: 943006647}
   - component: {fileID: 943006648}
   m_Layer: 0
   m_Name: SceneManager
@@ -922,18 +926,6 @@ MonoBehaviour:
   arrow: {fileID: 0}
   panelTransitionTime: 0.25
   pauseScreen: {fileID: 936885627}
---- !u!114 &943006647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 943006642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47e2327f2c25154282dd9a5ad604d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 620152735}
 --- !u!114 &943006648
 MonoBehaviour:
   m_ObjectHideFlags: 0

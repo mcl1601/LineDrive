@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Instructions : MonoBehaviour {
     public GameObject parent;
-
-    int acriveScreen = 0;
+    int currentScene;
+    int activeScreen = 0;
 	// Use this for initialization
 	void Start () {
-        if (PlayerPrefs.GetInt("hasViewedInstructions") == 1)
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+        if ((PlayerPrefs.GetInt("hasViewedInstructions") == 1 && currentScene == 1) ||
+            (PlayerPrefs.GetInt("hasViewedBounceInstructions") == 1 && currentScene == 4) ||
+            (PlayerPrefs.GetInt("hasViewedNoDrawInstructions") == 1 && currentScene == 5))
             Destroy(this);
         else
         {
@@ -21,16 +25,28 @@ public class Instructions : MonoBehaviour {
 	void Update () {
 		if(Input.GetMouseButtonDown(0))
         {
-            parent.transform.GetChild(acriveScreen).gameObject.SetActive(false);
-            acriveScreen++;
-            if(acriveScreen == 6)
+            parent.transform.GetChild(activeScreen).gameObject.SetActive(false);
+            activeScreen++;
+            if(activeScreen == 1 && currentScene == 4)
+            {
+                parent.SetActive(false);
+                PlayerPrefs.SetInt("hasViewedBounceInstructions", 1);
+                Destroy(this);
+            }
+            if (activeScreen == 1 && currentScene == 5)
+            {
+                parent.SetActive(false);
+                PlayerPrefs.SetInt("hasViewedNoDrawInstructions", 1);
+                Destroy(this);
+            }
+            if (activeScreen == 6)
             {
                 parent.SetActive(false);
                 PlayerPrefs.SetInt("hasViewedInstructions", 1);
                 Destroy(this);
             }
             else
-                parent.transform.GetChild(acriveScreen).gameObject.SetActive(true);
+                parent.transform.GetChild(activeScreen).gameObject.SetActive(true);
         }
 	}
 }

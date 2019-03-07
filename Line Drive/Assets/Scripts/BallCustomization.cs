@@ -55,7 +55,7 @@ public class BallCustomization : MonoBehaviour {
         string key = gameObject.name + "BuyState";
         state = (BuyState)PlayerPrefs.GetInt(key, 0);
 
-        if (name == "White" && currentCustomization != "White")
+        if (gameObject.name == "White" && currentCustomization != "White")
         {
             state = BuyState.Unlocked;
             Unlock();
@@ -65,6 +65,11 @@ public class BallCustomization : MonoBehaviour {
         {
             Unlock();
             Equip();
+        }
+
+        if(state == BuyState.Unlocked)
+        {
+            Unlock();
         }
 
         totalStarText.text = "x " + totalStars;
@@ -100,7 +105,6 @@ public class BallCustomization : MonoBehaviour {
                 break;
             case BuyState.Locked:
                 {
-                    Debug.Log("buying dis");
                     confirmWin.SetActive(true);
                     confirmWin.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = " = " + cost + " of ";
                     confirmWin.transform.GetChild(3).GetComponent<Text>().text = "Unlock for " + cost + " Stars?";
@@ -138,6 +142,10 @@ public class BallCustomization : MonoBehaviour {
         // Set the customization to be the new selection
         currentCustomization = gameObject.name;
         PlayerPrefs.SetString("CurrentBall", currentCustomization);
+
+        state = BuyState.Equipped;
+        string key = gameObject.name + "BuyState";
+        PlayerPrefs.SetInt(key, (int)state);
     }
 
     /// <summary>
@@ -148,7 +156,8 @@ public class BallCustomization : MonoBehaviour {
     {
         state = BuyState.Unlocked;
         equip.GetComponent<Text>().text = "Equip";
-
+        string key = gameObject.name + "BuyState";
+        PlayerPrefs.SetInt(key, (int)state);
         Destroy(gameObject.GetComponent<Outline>());
     }
 
