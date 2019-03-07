@@ -496,8 +496,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star3val: 7500
-  star2val: 5000
-  star1val: 2500
+  star2val: 4500
+  star1val: 2000
   stars: 0
   starObj: {fileID: 1973261728230278, guid: 6d89d9a8ce2535543bf8c14592f1005c, type: 2}
 --- !u!1 &1074276486
@@ -1321,6 +1321,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1074276488}
+    - target: {fileID: 224407923426128900, guid: d4fa69ce17094d244ac1adaaf140fa2d,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 41.66667
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4fa69ce17094d244ac1adaaf140fa2d, type: 2}
   m_IsPrefabAsset: 0

@@ -658,7 +658,7 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1505808947}
   uiController: {fileID: 943006646}
-  lineJuice: 100
+  lineJuice: 75
   juiceBar: {fileID: 2121969506}
 --- !u!82 &1074276491
 AudioSource:

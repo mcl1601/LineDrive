@@ -687,9 +687,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416275a5d124f494698f2f6aa8b891fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star3val: 7500
-  star2val: 5000
-  star1val: 2500
+  star3val: 6000
+  star2val: 3000
+  star1val: 1700
   stars: 0
   starObj: {fileID: 1973261728230278, guid: 6d89d9a8ce2535543bf8c14592f1005c, type: 2}
 --- !u!114 &1019680482 stripped
@@ -796,7 +796,7 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 1505808947}
   uiController: {fileID: 943006646}
-  lineJuice: 100
+  lineJuice: 60
   juiceBar: {fileID: 2121969506}
 --- !u!82 &1074276491
 AudioSource:
