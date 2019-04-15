@@ -34,6 +34,7 @@ public class GameUIController : MonoBehaviour {
         // Init stack
         placedObjects = new Stack<GameObject>();
         paperBG = GameObject.Find("PaperBG");
+        
         undo = GameObject.Find("Undo");
 	}
 

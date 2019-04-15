@@ -46,6 +46,9 @@ public class DrawLine : MonoBehaviour {
         SetAspect();
         if (GameObject.Find("PaperBG") != null)
             GameObject.Find("PaperBG").GetComponent<ResizeBackground>().Resize();
+
+        if (GameObject.Find("BG") != null)
+            GameObject.Find("BG").GetComponent<ResizeBackground>().Resize();
     }
 
     void SetAspect()
