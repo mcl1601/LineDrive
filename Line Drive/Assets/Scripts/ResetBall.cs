@@ -6,6 +6,8 @@ public class ResetBall : MonoBehaviour {
     Vector3 startPos;
     private float botY; // the bottom of the screen in world position
 
+    public float ballSpeedLimit;
+
     // Use this for initialization
     void Start () {
         startPos = this.transform.position;
@@ -23,7 +25,13 @@ public class ResetBall : MonoBehaviour {
             //Debug.Log(botY);
             ResetBallPosition();            
         }
-
+        Rigidbody2D ballRB = gameObject.GetComponent<Rigidbody2D>();
+        if (ballRB != null)
+        {
+            if(ballRB.velocity.magnitude > ballSpeedLimit)
+                ballRB.velocity = ballRB.velocity.normalized * ballSpeedLimit;
+            Debug.Log(ballRB.velocity.magnitude);
+        }
     }
 
     public void ResetBallPosition()
