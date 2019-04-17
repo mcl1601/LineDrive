@@ -52,6 +52,13 @@ public class ScoreManager : MonoBehaviour {
         else if (totalScore >= star1val) stars = 1;
         else stars = 0;
 
+        //Debug.Log("Level_" + SceneManager.GetActiveScene().name);
+        if(totalScore > PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().name))
+        {
+            Debug.Log("SAVED");
+            PlayerPrefs.SetInt("Level_" + SceneManager.GetActiveScene().name, totalScore);
+        }
+        
         // save the star value
         int holeNum = SceneManager.GetActiveScene().buildIndex;
         string key = "Hole" + holeNum + "Stars";

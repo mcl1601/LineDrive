@@ -60,6 +60,12 @@ public class BallCustomization : MonoBehaviour {
             state = BuyState.Unlocked;
             Unlock();
         }
+        else if(gameObject.name == "White")
+        {
+            state = BuyState.Equipped;
+            Unlock();
+            Equip();
+        }
 
         if (state == BuyState.Equipped)
         {
@@ -173,6 +179,9 @@ public class BallCustomization : MonoBehaviour {
         star.SetActive(false);
 
         equip.SetActive(true);
+
+        // Update UI
+        UnEquip();
     }
 
     public void Purchase()
