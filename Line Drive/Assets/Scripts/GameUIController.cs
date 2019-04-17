@@ -31,6 +31,8 @@ public class GameUIController : MonoBehaviour {
         topY = -panel.anchoredPosition.y;
         bottomY = -topY;
 
+        Debug.Log(PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().name));
+
         // Init stack
         placedObjects = new Stack<GameObject>();
         paperBG = GameObject.Find("PaperBG");
