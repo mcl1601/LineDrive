@@ -30,7 +30,6 @@ public class ResetBall : MonoBehaviour {
         {
             if(ballRB.velocity.magnitude > ballSpeedLimit)
                 ballRB.velocity = ballRB.velocity.normalized * ballSpeedLimit;
-            Debug.Log(ballRB.velocity.magnitude);
         }
     }
 
