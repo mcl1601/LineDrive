@@ -96,13 +96,12 @@ public class PlaceBoost : MonoBehaviour {
             return true;
         }
 
-        Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1f));
-        RaycastHit hit;
-        Ray r = new Ray(pos, Vector3.forward);
-        Physics.Raycast(r, out hit, 100f);
-        if (hit.transform != null) 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        GameObject[] boosts = GameObject.FindGameObjectsWithTag("speed");
+        for(int i = 0; i < boosts.Length; i++)
         {
-            if (hit.transform.tag == "speed")
+            if (boosts[i].GetComponent<BoxCollider2D>().OverlapPoint(mousePos))
                 return true;
         }
 
