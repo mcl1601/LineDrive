@@ -9,13 +9,14 @@ public class GameUIController : MonoBehaviour {
     public RectTransform panel;
     public Button line;
     public Button boost;
+    public Button eraser;
     public Button play;
     public RectTransform arrow;
     public float panelTransitionTime;
     public GameObject pauseScreen;
 
-    // Stack used to track the objects last placed by the player
-    public Stack<GameObject> placedObjects;
+    // List used to track the objects last placed by the player -- treated as a stack exscept for removal by eraser
+    public List<GameObject> placedObjects;
 
     private Button selected = null;
     private Coroutine lastroutine;
@@ -34,7 +35,7 @@ public class GameUIController : MonoBehaviour {
         Debug.Log(PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().name));
 
         // Init stack
-        placedObjects = new Stack<GameObject>();
+        placedObjects = new List<GameObject>();
         paperBG = GameObject.Find("PaperBG");
         
         undo = GameObject.Find("Undo");
@@ -157,7 +158,7 @@ public class GameUIController : MonoBehaviour {
         if (placedObjects.Count < 1)
             return;
 
-        GameObject last = placedObjects.Pop();
+        GameObject last = placedObjects[placedObjects.Count-1];
 
         //check if its a line and if so, you need to return the amount of line juice corresponding to the removed line points
         switch (last.tag)
@@ -166,7 +167,7 @@ public class GameUIController : MonoBehaviour {
                 Camera.main.GetComponent<DrawLine>().lineJuice += last.GetComponent<EdgeCollider2D>().pointCount - 1;
                 Camera.main.GetComponent<DrawLine>().UpdateJuiceBar();
                 break;
-            case "speed":
+            case "speed": // if its a speed boost then return one usable boost to the player
                 gameObject.GetComponent<PlaceBoost>().RemoveBoosts = 1;
                 boost.interactable = true;
                 boost.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
@@ -175,17 +176,6 @@ public class GameUIController : MonoBehaviour {
 
         Destroy(last);
     }
-
-    /// <summary>
-    /// If the player's pointer moves within the collider of an object it is removed
-    /// Can remove anything that the player can place
-    /// If moved over a line, the segment will be deleted (that's the goal anyway)
-    /// </summary>
-    public void RemoveLineSection()
-    {
-
-    }
-
 
     public void HighlightSelected()
     {

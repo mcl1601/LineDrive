@@ -153,7 +153,7 @@ public class DrawLine : MonoBehaviour {
                     lineRef.AddComponent<Rigidbody2D>();
 
                 // Add it to the stack of user-placed items
-                uiController.placedObjects.Push(lineRef);
+                uiController.placedObjects.Add(lineRef);
             }
             
 

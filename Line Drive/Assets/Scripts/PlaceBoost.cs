@@ -55,7 +55,7 @@ public class PlaceBoost : MonoBehaviour {
             instance = Instantiate(speedBoost, mousPos, Quaternion.identity);
 
             // Add it to the stack of user-placed items
-            uiController.placedObjects.Push(instance);
+            uiController.placedObjects.Add(instance);
 
             // Increment the boosts
             numBoosts++;

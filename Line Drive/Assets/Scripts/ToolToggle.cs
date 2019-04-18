@@ -5,7 +5,7 @@ using TMPro;
 
 public enum ToggleState
 {
-    Line, Boost, Shoot, None
+    Line, Boost, Remove, Shoot, None
 }
 public class ToolToggle : MonoBehaviour {
 
@@ -30,7 +30,11 @@ public class ToolToggle : MonoBehaviour {
             toggle = ToggleState.Shoot;
             UpdateToggle();
         }
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            toggle = ToggleState.Remove;
+            UpdateToggle();
+        }
 
     }
 
