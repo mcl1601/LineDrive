@@ -33,13 +33,11 @@ public class FlipBoost : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("tap");
         touchCount++;
         countdown = true;
 
         if(touchCount == 2)
         {
-            Debug.Log("Double Tap");
             transform.RotateAround(transform.position, new Vector3(0f, 0f, 1f), 180f);
             touchCount = 0;
         }
