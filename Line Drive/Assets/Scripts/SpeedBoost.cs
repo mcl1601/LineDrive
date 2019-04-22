@@ -5,10 +5,14 @@ using UnityEngine;
 public class SpeedBoost : MonoBehaviour {
     public float boostAmt;
 
-    GameObject ball;
+    private GameObject ball;
+
+    private Eraser eraser;
+
 	// Use this for initialization
 	void Start () {
         ball = GameObject.Find("Ball");
+        eraser = GameObject.Find("Eraser").GetComponent<Eraser>();
 	}
 
     // Update is called once per frame
@@ -19,8 +23,21 @@ public class SpeedBoost : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name != "Ball") return;
-        GetComponent<AudioSource>().Play();
-        ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.right.x * boostAmt, transform.right.y * boostAmt));
+        // Get the name of the collision's associated gameobject
+        string name = collision.gameObject.name;
+
+        if (name != "Ball" || name != "Eraser") return;
+
+        // Speed up the ball
+        if(name == "Ball")
+        {
+            GetComponent<AudioSource>().Play();
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.right.x * boostAmt, transform.right.y * boostAmt));
+        }
+        else // Erase the SpeedBoost
+        {
+            Debug.Log("Removing this boost");
+            eraser.RemoveItem(gameObject);
+        }
     }
 }
