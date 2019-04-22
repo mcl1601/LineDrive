@@ -156,8 +156,9 @@ public class GameUIController : MonoBehaviour {
                 boost.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
                 break;
         }
-
+        placedObjects.Remove(last);
         Destroy(last);
+        
     }
 
     public void HighlightSelected()
