@@ -21,16 +21,12 @@ public class GameUIController : MonoBehaviour {
     private Button selected = null;
     private Coroutine lastroutine;
     private bool uiHidden = false;
-    private float topY;
-    private float bottomY;
     private GameObject paperBG;
     private Vector3 savedVelocity;
     GameObject undo;
 	// Use this for initialization
 	void Start () {
         selected = line;
-        topY = -panel.anchoredPosition.y;
-        bottomY = -topY;
 
         Debug.Log(PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().name));
 
@@ -54,19 +50,6 @@ public class GameUIController : MonoBehaviour {
     public void ResetBall()
     {
         GameObject.Find("Ball").GetComponent<ResetBall>().ResetBallPosition();
-    }
-
-    public void ToggleUIPanel()
-    {
-        uiHidden = !uiHidden;
-        if(uiHidden)
-        {
-            SlideUIUp();
-        }
-        else
-        {
-            SlideUIDown();
-        }
     }
 
     public void PauseGame()
@@ -127,7 +110,7 @@ public class GameUIController : MonoBehaviour {
         selected.transform.GetChild(0).GetComponent<Image>().color = Color.green;
         undo.SetActive(false);
         //HighlightSelected();
-        SlideUIUp();
+        //SlideUIUp();
         //ChangeUndo(true);
     }
 
@@ -173,8 +156,9 @@ public class GameUIController : MonoBehaviour {
                 boost.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + gameObject.GetComponent<PlaceBoost>().RemainingBoosts;
                 break;
         }
-
+        placedObjects.Remove(last);
         Destroy(last);
+        
     }
 
     public void HighlightSelected()
@@ -184,13 +168,6 @@ public class GameUIController : MonoBehaviour {
         c.normalColor = Color.white;
         c.highlightedColor = Color.white;
         selected.colors = c;*/
-    }
-
-    public void SlideUIUp()
-    {
-        if(lastroutine != null) StopCoroutine(lastroutine);
-        uiHidden = true;
-        lastroutine = StartCoroutine(SlideUp());
     }
 
     IEnumerator AnimateBackgroundAppear()
@@ -221,46 +198,5 @@ public class GameUIController : MonoBehaviour {
             yield return null;
         }
         paperBG.transform.position = init;
-    }
-
-    IEnumerator SlideUp()
-    {
-        float timer = 0f;
-        float percent = 0f;
-        Vector2 initPos = panel.anchoredPosition;
-        //Quaternion initrot = arrow.rotation;
-
-        while (percent < 1f)
-        {
-            percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(initPos.x, Mathf.Lerp(initPos.y, topY, percent));
-            //arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 0f), percent);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    public void SlideUIDown()
-    {
-        StopCoroutine(lastroutine);
-        uiHidden = false;
-        lastroutine = StartCoroutine(SlideDown());
-    }
-
-    IEnumerator SlideDown()
-    {
-        float timer = 0f;
-        float percent = 0f;
-        Vector2 initPos = panel.anchoredPosition;
-        //Quaternion initrot = arrow.rotation;
-
-        while (percent < 1f)
-        {
-            percent = timer / panelTransitionTime;
-            panel.anchoredPosition = new Vector2(initPos.x, Mathf.Lerp(initPos.y, bottomY, percent));
-            //arrow.rotation = Quaternion.Slerp(initrot, Quaternion.Euler(0f, 0f, 180f), percent);
-            timer += Time.deltaTime;
-            yield return null;
-        }
     }
 }

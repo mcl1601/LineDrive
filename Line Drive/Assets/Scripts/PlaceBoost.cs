@@ -50,7 +50,6 @@ public class PlaceBoost : MonoBehaviour {
         {
             instance = null;
             if (CheckMouseInput()) return;
-            uiController.SlideUIUp();
             Vector3 mousPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             instance = Instantiate(speedBoost, mousPos, Quaternion.identity);
 
@@ -70,7 +69,6 @@ public class PlaceBoost : MonoBehaviour {
         }
         if(Input.GetMouseButtonUp(0) && instance != null)
         {
-            uiController.SlideUIDown();
 
             // If this was the last boost, exit this mode and disable the button
             if (numBoosts >= maxBoosts)
