@@ -9,7 +9,7 @@ public class Line : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eraser = GameObject.Find("Eraser").GetComponent<Eraser>();
+        eraser = GameObject.Find("Eraser(Clone)").GetComponent<Eraser>();
     }
 
     // Update is called once per frame
@@ -18,15 +18,14 @@ public class Line : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // Get the name of the collision's associated gameobject
         string name = collision.gameObject.name;
 
-        if (name != "Eraser") return;
+        if (name != "Eraser(Clone)") return;
 
         // Erase the SpeedBoost
-        Debug.Log("Removing this drawn line");
         eraser.RemoveItem(gameObject);
     }
 }

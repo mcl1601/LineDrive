@@ -24,7 +24,6 @@ public class Eraser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Button.onClick.AddListener(TaskOnClick);
         eraserCol = gameObject.GetComponent<CircleCollider2D>();
         sR = gameObject.GetComponent<SpriteRenderer>();
         uiController = GameObject.Find("SceneManager").GetComponent<GameUIController>();
@@ -36,7 +35,7 @@ public class Eraser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        toggle = gameObject.GetComponent<ToolToggle>().toggle;
+        toggle = uiController.GetComponent<ToolToggle>().toggle;
 
         // if it's not in the remove tool state then don't do anything
         if (toggle != ToggleState.Remove) return;
@@ -62,6 +61,7 @@ public class Eraser : MonoBehaviour
         {
             // HERE we need to re-write the code to track mouse position and set the gameobjects position to be the same
             mouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+            mouse.z = 0;
 
             gameObject.transform.position = mouse;
         }
