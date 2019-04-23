@@ -33,20 +33,6 @@ public class ResetBall : MonoBehaviour {
             if(ballRB.velocity.magnitude > ballSpeedLimit)
                 ballRB.velocity = ballRB.velocity.normalized * ballSpeedLimit;
         }
-        CheckGrav();
-    }
-
-    private void CheckGrav()
-    {
-
-        foreach(GameObject ng in noGrav)
-        {
-            if (ng.GetComponent<BoxCollider2D>().IsTouching(this.gameObject.GetComponent<CircleCollider2D>()))
-            {
-                Debug.Log("INNNNNNNN");
-            }
-        }
-        
     }
 
     public void ResetBallPosition()

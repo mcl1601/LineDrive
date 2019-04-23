@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3537187551597068263}
   - component: {fileID: 589425413622052934}
   m_Layer: 0
-  m_Name: NoGrav
+  m_Name: AntiGrav
   m_TagString: NoGrav
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,8 +96,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f49befdc49f3f9848ad414a277214854, type: 3}
-  m_Color: {r: 0, g: 0.44988894, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ba433667136d2b34dba358c5d7387467, type: 3}
+  m_Color: {r: 0.6281409, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c282ed9e068d3245bb516239e779e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravLevel: 0
+  gravLevel: -1
