@@ -3,7 +3,17 @@ guid: a9555da93674df54fa35b11328ab1b30
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - toolToggle: {instanceID: 0}
+  - panel: {instanceID: 0}
+  - line: {instanceID: 0}
+  - boost: {instanceID: 0}
+  - eraser: {instanceID: 0}
+  - play: {instanceID: 0}
+  - arrow: {instanceID: 0}
+  - pauseScreen: {instanceID: 0}
+  - eraserPrefab: {fileID: 2533616962300141875, guid: 5f54003294a101a4ca8208d0a66d9c81,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

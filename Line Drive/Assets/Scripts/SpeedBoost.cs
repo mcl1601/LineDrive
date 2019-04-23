@@ -12,7 +12,7 @@ public class SpeedBoost : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ball = GameObject.Find("Ball");
-        eraser = GameObject.Find("Eraser").GetComponent<Eraser>();
+        eraser = GameObject.Find("Eraser(Clone)").GetComponent<Eraser>();
 	}
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class SpeedBoost : MonoBehaviour {
         // Get the name of the collision's associated gameobject
         string name = collision.gameObject.name;
 
-        if (name != "Ball" && name != "Eraser") return;
+        if (name != "Ball" && name != "Eraser(Clone)") return;
 
         // Speed up the ball
         if(name == "Ball")
@@ -36,7 +36,6 @@ public class SpeedBoost : MonoBehaviour {
         }
         else // Erase the SpeedBoost
         {
-            Debug.Log("Removing this boost");
             eraser.RemoveItem(gameObject);
         }
     }
