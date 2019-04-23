@@ -14,6 +14,7 @@ public class GameUIController : MonoBehaviour {
     public RectTransform arrow;
     public float panelTransitionTime;
     public GameObject pauseScreen;
+    public GameObject eraserPrefab;
 
     // List used to track the objects last placed by the player -- treated as a stack exscept for removal by eraser
     public List<GameObject> placedObjects;
@@ -35,7 +36,12 @@ public class GameUIController : MonoBehaviour {
         paperBG = GameObject.Find("PaperBG");
         
         undo = GameObject.Find("Undo");
-	}
+        eraser = GameObject.Find("EraserBtn").GetComponent<Button>();
+        eraser.onClick.AddListener(EnableEraserMode);
+
+        // Init an eraser
+        GameObject.Instantiate(eraserPrefab);
+    }
 
     public void QuitToMain()
     {
@@ -69,8 +75,23 @@ public class GameUIController : MonoBehaviour {
         r.bodyType = RigidbodyType2D.Dynamic;
         r.velocity = savedVelocity;
     }
-	
-	public void EnableDrawMode()
+
+    public void EnableEraserMode()
+    {
+        if (toolToggle.toggle == ToggleState.Shoot)
+        {
+            StartCoroutine(AnimateBackgroundAppear());
+            ResetBall();
+        }
+        toolToggle.toggle = ToggleState.Remove;
+        ResetSelectedButton();
+        selected = eraser;
+        HighlightSelected();
+        undo.SetActive(true);
+        //ChangeUndo(false);
+    }
+
+    public void EnableDrawMode()
     {
         if (toolToggle.toggle == ToggleState.Shoot)
         {
