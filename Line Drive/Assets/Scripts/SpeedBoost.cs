@@ -26,7 +26,7 @@ public class SpeedBoost : MonoBehaviour {
         // Get the name of the collision's associated gameobject
         string name = collision.gameObject.name;
 
-        if (name != "Ball" || name != "Eraser") return;
+        if (name != "Ball" && name != "Eraser") return;
 
         // Speed up the ball
         if(name == "Ball")

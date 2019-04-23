@@ -186,6 +186,10 @@ public class DrawLine : MonoBehaviour {
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
                 ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(((mDown.x - mUp.x) * dragForce),0));
+                if(ball.GetComponent<TrailRenderer>())
+                {
+                    ball.GetComponent<TrailRenderer>().enabled = true;
+                }
                 mDown = Vector3.zero;
                 mCurrent = Vector3.zero;
                 mUp = Vector3.zero;
