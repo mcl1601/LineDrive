@@ -7,13 +7,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Eraser : MonoBehaviour
 {
-    public GameObject speedBoost;
-    public GameObject canvas;
-    public GameUIController uiController;
+    private GameUIController uiController;
 
-    public float radius;
+    //public float radius;
 
     private CircleCollider2D eraserCol;
+    private SpriteRenderer sR; //will help turn on and off visibility
 
     ToggleState toggle;
 
@@ -25,7 +24,13 @@ public class Eraser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Button.onClick.AddListener(TaskOnClick);
         eraserCol = gameObject.GetComponent<CircleCollider2D>();
+        sR = gameObject.GetComponent<SpriteRenderer>();
+        uiController = GameObject.Find("SceneManager").GetComponent<GameUIController>();
+
+        sR.enabled = false;
+        eraserCol.enabled = false;
     }
 
     // Update is called once per frame
@@ -43,14 +48,28 @@ public class Eraser : MonoBehaviour
         ///Then call the Remove Item method in this script which will take in the gameobject 
         ///That method will take care of removing it from the list of placed objects
         ///And restoring the corresponding boost number or line juice
-        
+        Vector3 mouse;
 
-        // HERE we need to re-write the code to track mouse position and set the gameobjects position to be the same
+        // Slide up the UI so you can erase under it
+        if (Input.GetMouseButtonDown(0))
+        {
+            //uiController.SlideUIUp();
+            sR.enabled = true;
+            eraserCol.enabled = true;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            // HERE we need to re-write the code to track mouse position and set the gameobjects position to be the same
+            mouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+
+            gameObject.transform.position = mouse;
+        }
 
         if (Input.GetMouseButtonUp(0))
         {
             // slide the ui back down
-            uiController.SlideUIDown();
+            //uiController.SlideUIDown();
 
             // If there is nothing to delete, switch tool to none
             if (uiController.placedObjects.Count < 0)
@@ -59,6 +78,8 @@ public class Eraser : MonoBehaviour
                 //uiController.eraser.interactable = false;
                 return;
             }
+            sR.enabled = false;
+            eraserCol.enabled = false;
         }
     }
 
@@ -69,8 +90,7 @@ public class Eraser : MonoBehaviour
     /// </summary>
     public void RemoveItem(GameObject itemToErase)
     {
-        // Slide up the UI so you can erase under it
-        uiController.SlideUIUp();
+        
 
         // Initially just delete the entire object, can look at line segments and splitting lines later
 
