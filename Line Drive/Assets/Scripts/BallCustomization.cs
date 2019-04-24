@@ -14,9 +14,11 @@ public class BallCustomization : MonoBehaviour {
 
     public Text totalStarText;
 
-    private GameObject confirmWin;
+    public GameObject confirmWin;
 
     public int cost = 1; // amount it cost to buy this customization
+
+    public int trailID;
 
     private BuyState state;
 
@@ -36,7 +38,7 @@ public class BallCustomization : MonoBehaviour {
     private void Awake()
     {
         // Set up ref to the confirmation window
-        confirmWin = transform.parent.parent.GetChild(4).gameObject;
+        //confirmWin = transform.parent.parent.GetChild(4).gameObject;
 
         // Set up all references to child UI parts
         unlock = gameObject.transform.GetChild(0).gameObject;
@@ -102,7 +104,14 @@ public class BallCustomization : MonoBehaviour {
                     equip.GetComponent<Text>().text = "Equipped";
 
                     // Unselect the currently selected one
-                    GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
+                    if(gameObject.name.Contains("Trail"))
+                    {
+                        GameObject.Find(PlayerPrefs.GetString("CurrentTrail")).GetComponent<BallCustomization>().UnEquip();
+                    }
+                    else
+                    {
+                        GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
+                    }
 
                     // Set the customization to be the new selection
                     Equip();
@@ -142,13 +151,21 @@ public class BallCustomization : MonoBehaviour {
         line.effectColor = Color.blue;
         line.useGraphicAlpha = false;
 
-        PlayerPrefs.SetFloat("R", ball.color.r);
-        PlayerPrefs.SetFloat("G", ball.color.g);
-        PlayerPrefs.SetFloat("B", ball.color.b);
+        if (gameObject.name.Contains("Trail"))
+        {
+            PlayerPrefs.SetInt("Trail", trailID);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("R", ball.color.r);
+            PlayerPrefs.SetFloat("G", ball.color.g);
+            PlayerPrefs.SetFloat("B", ball.color.b);
+        }
 
         // Set the customization to be the new selection
         currentCustomization = gameObject.name;
         PlayerPrefs.SetString("CurrentBall", currentCustomization);
+        PlayerPrefs.SetString("CurrentTrail", currentCustomization);
 
         state = BuyState.Equipped;
         string key = gameObject.name + "BuyState";
@@ -201,7 +218,5 @@ public class BallCustomization : MonoBehaviour {
         state = BuyState.Equipped;
         string key = gameObject.name + "BuyState";
         PlayerPrefs.SetInt(key, (int)state);
-
-        Debug.Log(PlayerPrefs.GetString("CurrentBall"));
     }
 }

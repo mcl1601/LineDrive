@@ -9,6 +9,8 @@ public class ResetBall : MonoBehaviour {
 
     public float ballSpeedLimit;
 
+    public Dictionary<int, GameObject> trails;
+
     // Use this for initialization
     void Start () {
         startPos = this.transform.position;
@@ -18,6 +20,17 @@ public class ResetBall : MonoBehaviour {
         // Setting the ball's custom attributes
         gameObject.GetComponent<SpriteRenderer>().color = new Color(PlayerPrefs.GetFloat("R", 1), PlayerPrefs.GetFloat("G", 1), PlayerPrefs.GetFloat("B", 1));
         noGrav = GameObject.FindGameObjectsWithTag("NoGrav");
+    }
+
+    public void CheckForTrailCustomization()
+    {
+        int id = PlayerPrefs.GetInt("Trail", -1);
+        if(id > -1)
+        {
+            TrailRenderer tr = trails[id].GetComponent<TrailRenderer>();
+            TrailRenderer thisTrail = gameObject.AddComponent<TrailRenderer>();
+            thisTrail = tr;
+        }
     }
 	
 	// Update is called once per frame
