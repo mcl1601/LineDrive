@@ -27,7 +27,7 @@ public class MainMenuController : MonoBehaviour {
             b.onClick.AddListener(() => { LoadLevel(l + 1); });
         }*/
 
-        for(int i = 0; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+        for(int i = 0; i < SceneManager.sceneCountInBuildSettings - 2; i++)
         {
             GameObject inst = Instantiate(btnPre, parent);
             inst.GetComponentInChildren<Text>().text = (i + 1).ToString();
@@ -59,7 +59,7 @@ public class MainMenuController : MonoBehaviour {
         {
             maxLevelUnlocked = PlayerPrefs.GetInt("maxLevel");
 
-            if(maxLevelUnlocked > 1)
+            if(maxLevelUnlocked > 0)
             {
                 GameObject.Find("Continue").GetComponent<Button>().interactable = true;
                 GameObject.Find("Continue").GetComponentInChildren<Text>().text += "\n\nHole " + maxLevelUnlocked.ToString();
@@ -115,7 +115,7 @@ public class MainMenuController : MonoBehaviour {
         PlayerPrefs.SetFloat("B", 1);
 
         maxLevelUnlocked = 1;
-        LoadLevel(1);
+        LoadLevel(0);
     }
 
     public void ContinueGame()

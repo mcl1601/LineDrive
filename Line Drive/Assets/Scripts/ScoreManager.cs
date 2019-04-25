@@ -60,7 +60,7 @@ public class ScoreManager : MonoBehaviour {
         }
         
         // save the star value
-        int holeNum = SceneManager.GetActiveScene().buildIndex;
+        int holeNum = SceneManager.GetActiveScene().buildIndex - 1;
         string key = "Hole" + holeNum + "Stars";
         if (PlayerPrefs.GetInt(key) < stars)
         {

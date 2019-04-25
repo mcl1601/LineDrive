@@ -35,6 +35,22 @@ public class Eraser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            // slide the ui back down
+            //uiController.SlideUIDown();
+
+            // If there is nothing to delete, switch tool to none
+            if (uiController.placedObjects.Count < 0)
+            {
+                gameObject.GetComponent<ToolToggle>().toggle = ToggleState.None;
+                //uiController.eraser.interactable = false;
+                return;
+            }
+            sR.enabled = false;
+            eraserCol.enabled = false;
+        }
+
         toggle = uiController.GetComponent<ToolToggle>().toggle;
 
         // if it's not in the remove tool state then don't do anything
@@ -64,22 +80,6 @@ public class Eraser : MonoBehaviour
             mouse.z = 0;
 
             gameObject.transform.position = mouse;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            // slide the ui back down
-            //uiController.SlideUIDown();
-
-            // If there is nothing to delete, switch tool to none
-            if (uiController.placedObjects.Count < 0)
-            {
-                gameObject.GetComponent<ToolToggle>().toggle = ToggleState.None;
-                //uiController.eraser.interactable = false;
-                return;
-            }
-            sR.enabled = false;
-            eraserCol.enabled = false;
         }
     }
 

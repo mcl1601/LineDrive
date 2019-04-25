@@ -950,6 +950,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -985,21 +1000,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1626322649}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ecc57fd109e9a46b1c0362e40a2271, type: 3}
 --- !u!224 &225466843 stripped
@@ -1343,6 +1343,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1378,21 +1393,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1721456882}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     - target: {fileID: 114774594904914672, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_Text
@@ -1898,6 +1898,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1933,21 +1948,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 395911753}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ecc57fd109e9a46b1c0362e40a2271, type: 3}
 --- !u!224 &395911752 stripped
@@ -3028,6 +3028,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3063,21 +3078,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 809738862}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     - target: {fileID: 114774594904914672, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_Text
@@ -4749,6 +4749,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4784,21 +4799,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1184596650}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     - target: {fileID: 114774594904914672, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_Text
@@ -5549,6 +5549,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: totalStarText
+      value: 
+      objectReference: {fileID: 1020964916}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
+        type: 3}
+      propertyPath: confirmWin
+      value: 
+      objectReference: {fileID: 951697323}
     - target: {fileID: 114291567577088644, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5584,21 +5599,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1802467035}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: totalStarText
-      value: 
-      objectReference: {fileID: 1020964916}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114812814317426838, guid: 45ecc57fd109e9a46b1c0362e40a2271,
-        type: 3}
-      propertyPath: confirmWin
-      value: 
-      objectReference: {fileID: 951697323}
     - target: {fileID: 114774594904914672, guid: 45ecc57fd109e9a46b1c0362e40a2271,
         type: 3}
       propertyPath: m_Text

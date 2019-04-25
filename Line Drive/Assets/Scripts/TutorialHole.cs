@@ -36,6 +36,7 @@ public class TutorialHole : MonoBehaviour
     {
         loadingScreen.SetActive(true);
         winUI.SetActive(false);
+        PlayerPrefs.SetInt("maxLevel", 1);
         IEnumerator l = LoadScene(1);
         StartCoroutine(l);
     }

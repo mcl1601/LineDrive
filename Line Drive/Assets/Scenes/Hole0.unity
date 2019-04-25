@@ -439,7 +439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1830228361585512, guid: d4fa69ce17094d244ac1adaaf140fa2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1933229530111742, guid: d4fa69ce17094d244ac1adaaf140fa2d, type: 3}
       propertyPath: m_IsActive
@@ -821,6 +821,7 @@ MonoBehaviour:
   arrow: {fileID: 0}
   panelTransitionTime: 0.25
   pauseScreen: {fileID: 816409606}
+  eraserPrefab: {fileID: 0}
   placedObjects: []
 --- !u!114 &1120993426
 MonoBehaviour:
