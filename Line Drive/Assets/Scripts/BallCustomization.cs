@@ -18,7 +18,7 @@ public class BallCustomization : MonoBehaviour {
 
     public int cost = 1; // amount it cost to buy this customization
 
-    public int trailID;
+    private int id;
 
     private BuyState state;
 
@@ -31,6 +31,7 @@ public class BallCustomization : MonoBehaviour {
     private GameObject equip;
 
     private Image ball;
+    private CustomizationManager customizationManager;
 
     private int totalStars;
     private string currentCustomization;
@@ -56,6 +57,8 @@ public class BallCustomization : MonoBehaviour {
         currentCustomization = PlayerPrefs.GetString("CurrentBall", "White");
         string key = gameObject.name + "BuyState";
         state = (BuyState)PlayerPrefs.GetInt(key, 0);
+        customizationManager = GameObject.Find("CustomizationManager").GetComponent<CustomizationManager>();
+        id = transform.GetSiblingIndex();
 
         if (gameObject.name == "White" && currentCustomization != "White")
         {
@@ -90,7 +93,6 @@ public class BallCustomization : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        currentCustomization = PlayerPrefs.GetString("CurrentBall");
         totalStars = PlayerPrefs.GetInt("TotalStars");
 
         switch (state)
@@ -110,7 +112,7 @@ public class BallCustomization : MonoBehaviour {
                     }
                     else
                     {
-                        GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
+                        GameObject.Find(PlayerPrefs.GetString("CurrentBall")).GetComponent<BallCustomization>().UnEquip();
                     }
 
                     // Set the customization to be the new selection
@@ -153,19 +155,25 @@ public class BallCustomization : MonoBehaviour {
 
         if (gameObject.name.Contains("Trail"))
         {
-            PlayerPrefs.SetInt("Trail", trailID);
+            PlayerPrefs.SetInt("Trail", id);
+            customizationManager.UpdateCurrentTrail(id);
         }
         else
         {
-            PlayerPrefs.SetFloat("R", ball.color.r);
-            PlayerPrefs.SetFloat("G", ball.color.g);
-            PlayerPrefs.SetFloat("B", ball.color.b);
+            PlayerPrefs.SetInt("Ball", id);
+            customizationManager.UpdateCurrentBall(id);
         }
 
         // Set the customization to be the new selection
-        currentCustomization = gameObject.name;
-        PlayerPrefs.SetString("CurrentBall", currentCustomization);
-        PlayerPrefs.SetString("CurrentTrail", currentCustomization);
+        if(gameObject.name.Contains("Trail"))
+        {
+            PlayerPrefs.SetString("CurrentTrail", gameObject.name);
+        }
+        else
+        {
+            PlayerPrefs.SetString("CurrentBall", gameObject.name);
+        }
+        
 
         state = BuyState.Equipped;
         string key = gameObject.name + "BuyState";
@@ -206,7 +214,14 @@ public class BallCustomization : MonoBehaviour {
         Unlock();
 
         // Unselect the currently selected one
-        GameObject.Find(currentCustomization).GetComponent<BallCustomization>().UnEquip();
+        if (gameObject.name.Contains("Trail"))
+        {
+            GameObject.Find(PlayerPrefs.GetString("CurrentTrail")).GetComponent<BallCustomization>().UnEquip();
+        }
+        else
+        {
+            GameObject.Find(PlayerPrefs.GetString("CurrentBall")).GetComponent<BallCustomization>().UnEquip();
+        }
 
         Equip();
         

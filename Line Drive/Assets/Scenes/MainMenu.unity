@@ -3852,6 +3852,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999297427}
   m_CullTransparentMesh: 0
+--- !u!1 &1003764223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1003764225}
+  - component: {fileID: 1003764224}
+  m_Layer: 0
+  m_Name: CustomizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1003764224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003764223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578a09a02fab44740a3e52777bcc6f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balls:
+  - {fileID: 98394846463347530, guid: d15993cb3ceb32344be998b070fb4ab6, type: 3}
+  - {fileID: 98394846463347530, guid: 61e4810edaae02849a119f63dc68d017, type: 3}
+  - {fileID: 98394846463347530, guid: 1a3cf15785e452848b77ca243da09eeb, type: 3}
+  - {fileID: 98394846463347530, guid: ddc25538a2c4f7142bb6d621b7e46df5, type: 3}
+  trails:
+  - {fileID: 98394846463347530, guid: 061c3ea0965f18b4eb7f5abd768f7810, type: 3}
+  - {fileID: 6174369699640302786, guid: af23656e6b9b69547abe59011e5b5612, type: 3}
+  - {fileID: 98394846463347530, guid: dd5cfc6305d2f4840bc6bed80536acd2, type: 3}
+  - {fileID: 98394846463347530, guid: 9232a409d5b4ade4c9649d9c9ddb3a75, type: 3}
+--- !u!4 &1003764225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003764223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013545496
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,7 +6721,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2046344582}
   lvlSelect: {fileID: 1397325508}
-  ballCustom: {fileID: 409199888}
+  customization: {fileID: 409199888}
+  ballCustom: {fileID: 1267438043}
+  trailCustom: {fileID: 1722175237}
   loadingScreen: {fileID: 164920376}
   lvlGroup: {fileID: 681636132}
   btnPre: {fileID: 1449751389234550, guid: 598a79befdfc9f84f8b63e30cbeb3482, type: 3}

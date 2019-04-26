@@ -5,14 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
-    public GameObject mainMenu, lvlSelect, ballCustom, loadingScreen, lvlGroup, btnPre, starPre;
+    public GameObject mainMenu, lvlSelect, customization, ballCustom, trailCustom, loadingScreen, lvlGroup, btnPre, starPre;
     public Image loadingBar;
     public Transform parent;
+    private CustomizationManager customizationManager;
 
     private int maxLevelUnlocked;
 
 	// Use this for initialization
 	void Start () {
+        customizationManager = GameObject.Find("CustomizationManager").GetComponent<CustomizationManager>();
         CheckForData();
         DestroyMusic();
 		/*for(int i = 0; i < lvlGroup.transform.childCount; i++)
@@ -76,7 +78,7 @@ public class MainMenuController : MonoBehaviour {
     public void SwitchToBallCustomization()
     {
         mainMenu.SetActive(false);
-        ballCustom.SetActive(true);
+        customization.SetActive(true);
     }
 
     public void SwitchToMainMenu()
@@ -87,7 +89,7 @@ public class MainMenuController : MonoBehaviour {
     public void SwitchToMainMenuFromCustom()
     {
         mainMenu.SetActive(true);
-        ballCustom.SetActive(false);
+        customization.SetActive(false);
     }
 
     public void NewGame()
@@ -103,16 +105,23 @@ public class MainMenuController : MonoBehaviour {
             PlayerPrefs.SetInt(key, 0);
         }
         // Reset all customization
-        for(int j = 1; j < ballCustom.transform.GetChild(2).childCount; j++)
+        for(int j = 0; j < ballCustom.transform.childCount; j++)
         {
-            string key = ballCustom.transform.GetChild(2).GetChild(j).name + "BuyState";
+            string key = ballCustom.transform.GetChild(j).name + "BuyState";
+            PlayerPrefs.SetInt(key, 0);
+        }
+        for (int k = 0; k < trailCustom.transform.childCount; k++)
+        {
+            string key = trailCustom.transform.GetChild(k).name + "BuyState";
             PlayerPrefs.SetInt(key, 0);
         }
         // Reset ball customization to white
         PlayerPrefs.SetString("CurrentBall", "White");
-        PlayerPrefs.SetFloat("R", 1);
-        PlayerPrefs.SetFloat("G", 1);
-        PlayerPrefs.SetFloat("B", 1);
+        PlayerPrefs.SetInt("Trail", -1);
+        PlayerPrefs.SetInt("Ball", 0);
+        customizationManager.UpdateCurrentBall(0);
+        customizationManager.ResetTrail();
+
 
         maxLevelUnlocked = 1;
         LoadLevel(0);

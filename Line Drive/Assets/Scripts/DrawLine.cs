@@ -34,6 +34,7 @@ public class DrawLine : MonoBehaviour {
     Vector3 mCurrent;
     Vector3 mUp;
     GameObject powerLine;
+    CustomizationManager customizationManager;
     float dragForce = 15f;
     // Use this for initialization
     void Start () {
@@ -42,6 +43,7 @@ public class DrawLine : MonoBehaviour {
         eSys = canvas.GetComponent<EventSystem>();
         juiceInitial = (float)lineJuice;
         linePre.GetComponent<LineRenderer>().textureMode = LineTextureMode.Tile;
+        customizationManager = GameObject.Find("CustomizationManager").GetComponent<CustomizationManager>();
 
         SetAspect();
         if (GameObject.Find("PaperBG") != null)
@@ -186,7 +188,7 @@ public class DrawLine : MonoBehaviour {
                 ball.AddComponent<Rigidbody2D>();
                 ball.GetComponent<Rigidbody2D>().mass = 0.2f;
                 ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(((mDown.x - mUp.x) * dragForce),0));
-                if(ball.GetComponent<TrailRenderer>())
+                if(customizationManager.HasTrail())
                 {
                     ball.GetComponent<TrailRenderer>().enabled = true;
                 }

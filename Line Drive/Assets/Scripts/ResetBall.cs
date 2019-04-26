@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ResetBall : MonoBehaviour {
     Vector3 startPos;
@@ -10,26 +11,23 @@ public class ResetBall : MonoBehaviour {
     public float ballSpeedLimit;
 
     public Dictionary<int, GameObject> trails;
+    
+    private CustomizationManager customizationManager;
 
     // Use this for initialization
     void Start () {
+        customizationManager = GameObject.Find("CustomizationManager").GetComponent<CustomizationManager>();
         startPos = this.transform.position;
 
         botY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).y;
 
         // Setting the ball's custom attributes
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(PlayerPrefs.GetFloat("R", 1), PlayerPrefs.GetFloat("G", 1), PlayerPrefs.GetFloat("B", 1));
+        gameObject.AddComponent<SpriteRenderer>(customizationManager.GetCurrentBall());
         noGrav = GameObject.FindGameObjectsWithTag("NoGrav");
-    }
-
-    public void CheckForTrailCustomization()
-    {
-        int id = PlayerPrefs.GetInt("Trail", -1);
-        if(id > -1)
+        
+        if(customizationManager.HasTrail())
         {
-            TrailRenderer tr = trails[id].GetComponent<TrailRenderer>();
-            TrailRenderer thisTrail = gameObject.AddComponent<TrailRenderer>();
-            thisTrail = tr;
+            gameObject.AddComponent<TrailRenderer>(customizationManager.GetCurrentTrail());
         }
     }
 	
@@ -51,7 +49,7 @@ public class ResetBall : MonoBehaviour {
     public void ResetBallPosition()
     {
         if (!this.GetComponent<Rigidbody2D>()) return;
-        if(gameObject.GetComponent<TrailRenderer>())
+        if(customizationManager.HasTrail())
         {
             gameObject.GetComponent<TrailRenderer>().enabled = false;
         }
