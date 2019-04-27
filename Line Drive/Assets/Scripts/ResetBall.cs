@@ -23,6 +23,7 @@ public class ResetBall : MonoBehaviour {
 
         // Setting the ball's custom attributes
         gameObject.AddComponent<SpriteRenderer>(customizationManager.GetCurrentBall());
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 10;
         noGrav = GameObject.FindGameObjectsWithTag("NoGrav");
         
         if(customizationManager.HasTrail())
@@ -51,7 +52,7 @@ public class ResetBall : MonoBehaviour {
         if (!this.GetComponent<Rigidbody2D>()) return;
         if(customizationManager.HasTrail())
         {
-            gameObject.GetComponent<TrailRenderer>().enabled = false;
+            gameObject.GetComponent<TrailRenderer>().time = 0f;
         }
         this.transform.position = startPos;
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);

@@ -68,11 +68,11 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 0.25
+  m_SortingOrder: -1
+  m_Time: 0.7
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.75
+    widthMultiplier: 0.35
     widthCurve:
       serializedVersion: 2
       m_Curve:

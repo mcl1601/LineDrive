@@ -5,7 +5,8 @@ using UnityEngine;
 public class CustomizationManager : MonoBehaviour
 {
     public GameObject[] balls;          // list of ball customizations
-    public GameObject[] trails;         // list of trail customizations    
+    public GameObject[] trails;         // list of trail customizations
+    public float trailtime;             // how long for the trail to fade
 
     private GameObject currentBall;     // the currently equipped ball
     private GameObject currentTrail;    // the current trail. **NOTE** Can be null

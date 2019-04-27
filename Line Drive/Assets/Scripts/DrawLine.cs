@@ -190,7 +190,7 @@ public class DrawLine : MonoBehaviour {
                 ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(((mDown.x - mUp.x) * dragForce),0));
                 if(customizationManager.HasTrail())
                 {
-                    ball.GetComponent<TrailRenderer>().enabled = true;
+                    ball.GetComponent<TrailRenderer>().time = customizationManager.trailtime;
                 }
                 mDown = Vector3.zero;
                 mCurrent = Vector3.zero;

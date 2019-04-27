@@ -127,6 +127,7 @@ public class BallCustomization : MonoBehaviour {
                     confirmWin.transform.GetChild(3).GetComponent<Text>().text = "Unlock for " + cost + " Stars?";
                     confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
                     confirmWin.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(Purchase);
+                    confirmWin.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = ball.sprite;
                     confirmWin.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = ball.color;
                     if (cost > totalStars)
                     {

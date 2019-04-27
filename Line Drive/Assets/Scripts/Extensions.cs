@@ -31,6 +31,12 @@ public static class Extensions
 
     public static T AddComponent<T>(this GameObject go, T toAdd) where T : Component
     {
-        return go.AddComponent<T>().GetCopyOf(toAdd) as T;
+        T ret = go.AddComponent<T>().GetCopyOf(toAdd) as T;
+        if(toAdd.GetType() == typeof(TrailRenderer))
+        {
+            TrailRenderer t = toAdd as TrailRenderer;
+            go.GetComponent<TrailRenderer>().material = t.sharedMaterial;
+        }
+        return ret;
     }
 }
