@@ -217,7 +217,9 @@ public class BallCustomization : MonoBehaviour {
         // Unselect the currently selected one
         if (gameObject.name.Contains("Trail"))
         {
-            GameObject.Find(PlayerPrefs.GetString("CurrentTrail")).GetComponent<BallCustomization>().UnEquip();
+            string trail = PlayerPrefs.GetString("CurrentTrail", null);
+            if(trail.Length > 0)
+                GameObject.Find(trail).GetComponent<BallCustomization>().UnEquip();
         }
         else
         {
