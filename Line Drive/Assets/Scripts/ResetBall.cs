@@ -5,7 +5,7 @@ using System;
 
 public class ResetBall : MonoBehaviour {
     Vector3 startPos;
-    private float botY; // the bottom of the screen in world position
+    private float botY, topY, rightX, leftX; // the bottom of the screen in world position
     private GameObject[] noGrav;
 
     public float ballSpeedLimit;
@@ -19,8 +19,10 @@ public class ResetBall : MonoBehaviour {
         customizationManager = GameObject.Find("CustomizationManager").GetComponent<CustomizationManager>();
         startPos = this.transform.position;
 
-        botY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).y;
-
+        botY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).y - 3;
+        topY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y + 3;
+        rightX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x + 3;
+        leftX = Camera.main.ScreenToWorldPoint(Vector3.zero).x - 3;
         // Setting the ball's custom attributes
         gameObject.AddComponent<SpriteRenderer>(customizationManager.GetCurrentBall());
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 10;
@@ -34,7 +36,7 @@ public class ResetBall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(this.transform.position.y <= botY || Input.GetKeyDown("r"))
+		if(this.transform.position.y <= botY || this.transform.position.y >= topY  || this.transform.position.x >= rightX || this.transform.position.x <= leftX || Input.GetKeyDown("r"))
         {
             //Debug.Log(botY);
             ResetBallPosition();            
